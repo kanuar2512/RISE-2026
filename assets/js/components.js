@@ -346,7 +346,9 @@
     panel: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="9" r="2.4"/><circle cx="17" cy="9" r="2.4"/><circle cx="12" cy="7.5" r="2.6"/><path d="M3 19c0-2.4 2-4 4-4 1 0 1.9.3 2.6.9"/><path d="M21 19c0-2.4-2-4-4-4-1 0-1.9.3-2.6.9"/><path d="M7.5 19c0-2.7 2-4.5 4.5-4.5s4.5 1.8 4.5 4.5"/></svg>`,
     flag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-1.5 3.5L16 11H5"/></svg>`,
     frame: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><rect x="8" y="8" width="8" height="8" rx="0.5"/></svg>`,
-    save: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>`
+    save: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>`,
+    target: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>`,
+    network: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M6.8 7.2 10.4 16M17.2 7.2 13.6 16M7 6h10"/></svg>`
   };
   const picon = (n) => PICON[n] || ICONS[n] || "";
 
@@ -563,6 +565,145 @@
       (d.intro ? reveal(1, el("p", "slide-sub", d.intro)) : "") +
       el("div", "sec-chips", chips) +
       (d.note ? reveal(2 + d.chips.length + 1, el("div", "wf-note", el("span", "gold-rule") + el("span", "", d.note))) : "");
+  };
+
+  /* ============================================================
+     RESEARCH LANDSCAPE DECK COMPONENTS (bibliometric infographics)
+     All render dynamically from the `research` data object.
+     ============================================================ */
+  const PALETTE = ["#800000", "#C77B30", "#E0B43C", "#6B4E2E", "#A33A52", "#9c4a2f"];
+
+  // --- slice-and-dice treemap (2 balanced rows) ---
+  function treemapTiles(items) {
+    const sorted = [...items].sort((a, b) => b.value - a.value);
+    const total = sorted.reduce((s, x) => s + x.value, 0);
+    const half = total / 2;
+    let row1 = [], s1 = 0;
+    for (const it of sorted) { if (s1 < half) { row1.push(it); s1 += it.value; } else { break; } }
+    let row2 = sorted.slice(row1.length);
+    if (!row2.length) { row2 = [row1.pop()]; }
+    s1 = row1.reduce((s, x) => s + x.value, 0);
+    const s2 = total - s1;
+    const mk = (arr) => arr.map((it) =>
+      `<div class="tm-tile" style="flex-grow:${it.value};--c:${it.color || "#800000"}">` +
+      `<span class="tm-v">${it.value}</span><span class="tm-l">${it.label}</span></div>`).join("");
+    return `<div class="tm"><div class="tm-row" style="flex-grow:${s1}">${mk(row1)}</div>` +
+      `<div class="tm-row" style="flex-grow:${s2}">${mk(row2)}</div></div>`;
+  }
+
+  // --- donut (reuses .donut-seg animation) ---
+  function donutSvg(items, sub) {
+    const total = items.reduce((s, x) => s + x.value, 0);
+    const r = 80, cx = 100, cy = 100, circ = 2 * Math.PI * r;
+    let off = 0;
+    const segs = items.map((it) => {
+      const dash = it.value / total * circ;
+      const s = `<circle class="donut-seg" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${it.color}" stroke-width="28" stroke-dasharray="0 ${circ}" data-dash="${dash}" data-gap="${circ - dash}" data-offset="${-off}"></circle>`;
+      off += dash; return s;
+    }).join("");
+    return `<svg class="donut" viewBox="0 0 200 200">${segs}<g transform="rotate(90 100 100)">` +
+      `<text x="100" y="95" text-anchor="middle" font-size="42" fill="#800000" font-family="var(--font-display)">${total}</text>` +
+      `<text x="100" y="120" text-anchor="middle" font-size="11" fill="#6b5f4d" font-family="var(--font-body)">${sub || ""}</text></g></svg>`;
+  }
+  function legendList(items) {
+    return `<div class="d-leg">` + items.map((it) =>
+      `<div class="d-leg-i"><span class="d-sw" style="background:${it.color}"></span>${it.label} <b>${it.value}</b></div>`).join("") + `</div>`;
+  }
+  function miniBars(items) {
+    const max = Math.max(...items.map((x) => x.value));
+    return items.map((x, i) =>
+      `<div class="pbar"><span class="pbar-l">${x.label}</span>` +
+      `<span class="pbar-t"><span class="bar-fill" data-w="${x.value / max * 100}" style="--accent:${x.color || PALETTE[i % PALETTE.length]}"></span></span>` +
+      `<span class="pbar-v">${x.value}</span></div>`).join("");
+  }
+
+  /* ---- Slide 2: research profile board ---- */
+  C.profileBoard = function (d) {
+    return sectionHead(d.eyebrow, d.title) +
+      el("div", "pb-grid",
+        reveal(2, el("article", "card pb-panel", el("div", "pb-head", "Tema Penyelidikan") + treemapTiles(d.themes))) +
+        reveal(3, el("article", "card pb-panel", el("div", "pb-head", "Reka Bentuk Kajian") +
+          el("div", "pb-donut", donutSvg(d.design, "kajian") + legendList(d.design)))) +
+        reveal(4, el("article", "card pb-panel", el("div", "pb-head", "Populasi Kajian") + el("div", "pb-bars", miniBars(d.population)))) +
+        reveal(5, el("article", "card pb-panel", el("div", "pb-head", "Fokus Penguatkuasaan") + el("div", "pb-bars", miniBars(d.enforcement))))
+      ) +
+      reveal(6, el("div", "wf-note", el("span", "gold-rule") + el("span", "", d.observations.join("&nbsp;&nbsp;•&nbsp;&nbsp;"))));
+  };
+
+  /* ---- Slide 3: keyword bubble chart + tag chips ---- */
+  C.bubbleChart = function (d) {
+    const max = d.max;
+    const bubbles = d.top.slice(0, 14).map((t, i) => {
+      const dia = 56 + (t.freq / max) * 96;
+      return reveal(2 + i, `<div class="bub${i < 5 ? " bub-hot" : ""}" style="--d:${Math.round(dia)}px">` +
+        `<span class="bub-c"><span class="bub-n">${t.freq}</span></span><span class="bub-l">${t.label}</span></div>`);
+    }).join("");
+    const chips = d.top.map((t) =>
+      `<span class="kw-chip${t.rank <= 5 ? " kw-top" : ""}"><b>${t.rank}</b>${t.label}<em>${t.freq}</em></span>`).join("");
+    return sectionHead(d.eyebrow, d.title) +
+      el("div", "bub-field", bubbles) +
+      reveal(17, el("div", "kw-chips", chips)) +
+      reveal(18, el("div", "wf-note", el("span", "gold-rule") + el("span", "", d.observation)));
+  };
+
+  /* ---- Slide 4: keyword co-occurrence network ---- */
+  C.networkGraph = function (d) {
+    const maxF = Math.max(...d.nodes.map((n) => n.freq));
+    const cmap = {}; d.clusters.forEach((c) => { cmap[c.id] = c.color; });
+    const pos = {}; d.nodes.forEach((n) => { pos[n.id] = n; });
+    const edges = d.edges.map((e) => {
+      const A = pos[e.a], B = pos[e.b];
+      return `<line class="net-edge" data-a="${e.a}" data-b="${e.b}" x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" stroke-width="${(0.5 + e.w * 0.9).toFixed(1)}"></line>`;
+    }).join("");
+    const nodes = d.nodes.map((n) => {
+      const r = (9 + (n.freq / maxF) * 30).toFixed(1);
+      const col = cmap[n.cluster] || "#800000";
+      const lab = n.freq >= 5 ? `<text class="net-label" x="${n.x}" y="${(n.y - r - 6)}" text-anchor="middle">${n.label}</text>` : "";
+      return `<g class="net-node" data-id="${n.id}"><circle cx="${n.x}" cy="${n.y}" r="${r}" fill="${col}"></circle>${lab}</g>`;
+    }).join("");
+    const legend = el("div", "net-legend",
+      el("div", "nl-title", "Kluster") +
+      d.clusters.map((c) => `<div class="nl-row"><span class="nl-dot" style="background:${c.color}"></span>${c.label}</div>`).join("") +
+      el("div", "nl-meta", "<span>Saiz nod = kekerapan kata kunci</span><span>Tebal garis = kekuatan hubungan</span>"));
+    const obs = "<ul class='net-obs'>" + d.observations.map((o) => `<li>${o}</li>`).join("") + "</ul>";
+    return sectionHead(d.eyebrow, d.title) +
+      el("div", "net-layout",
+        reveal(2, `<div class="net-holder"><svg class="net-svg" viewBox="0 0 1000 630">${edges}${nodes}</svg></div>`) +
+        el("div", "net-side", reveal(3, legend) + reveal(4, obs))
+      );
+  };
+
+  /* ---- Slide 5: cluster ecosystem + emerging roadmap + insight ---- */
+  function ecoSvg(clusters) {
+    const cx = 270, cy = 250, R = 165;
+    const maxA = Math.max(...clusters.map((c) => c.abstracts));
+    let links = "", bubs = "";
+    clusters.forEach((c, i) => {
+      const ang = -Math.PI / 2 + i * 2 * Math.PI / clusters.length;
+      const x = (cx + R * Math.cos(ang)).toFixed(1), y = (cy + R * 0.9 * Math.sin(ang)).toFixed(1);
+      const r = (24 + (c.abstracts / maxA) * 30).toFixed(1);
+      links += `<line class="eco-link" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"></line>`;
+      bubs += `<g class="eco-node"><circle cx="${x}" cy="${y}" r="${r}" fill="${c.color}"></circle>` +
+        `<text class="eco-a" x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central">${c.abstracts}</text></g>`;
+    });
+    const hub = `<circle class="eco-hub" cx="${cx}" cy="${cy}" r="40"></circle>` +
+      `<text class="eco-hub-t" x="${cx}" y="${cy - 4}" text-anchor="middle">RISE</text>` +
+      `<text class="eco-hub-t2" x="${cx}" y="${cy + 14}" text-anchor="middle">R&amp;D</text>`;
+    return `<svg class="eco-svg" viewBox="0 0 540 520">${links}${hub}${bubs}</svg>`;
+  }
+  C.landscapeOutlook = function (d) {
+    const eco = ecoSvg(d.clusters) + el("div", "eco-leg",
+      d.clusters.map((c) => `<div class="eco-leg-i"><span class="d-sw" style="background:${c.color}"></span>` +
+        `<span class="eco-leg-l">${c.label}</span><span class="eco-leg-n">${c.abstracts} abstrak · ${c.size} kata kunci</span></div>`).join(""));
+    const road = d.emerging.map((e, i) =>
+      reveal(4 + i, el("div", "road-item",
+        el("span", "road-tag", e.tag) + el("div", "road-t", e.title) + el("p", "road-d", e.desc)))).join("");
+    return sectionHead(d.eyebrow, d.title) +
+      el("div", "outlook-grid",
+        reveal(2, el("div", "eco-wrap", el("div", "ol-head", "Kluster Penyelidikan") + eco)) +
+        el("div", "road", el("div", "ol-head", "Topik Penyelidikan Baharu") + road)
+      ) +
+      reveal(10, el("div", "insight-card", el("span", "ins-ic", picon("flag")) + el("p", "", d.insight)));
   };
 
   /* expose */

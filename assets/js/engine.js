@@ -116,6 +116,29 @@
     if (card) { card.classList.toggle("open"); }
   });
 
+  /* ---------- network graph hover: highlight connected nodes/edges ---------- */
+  stage.addEventListener("mouseover", (e) => {
+    const g = e.target.closest(".net-node");
+    if (!g) { return; }
+    const svg = g.closest(".net-svg"); if (!svg) { return; }
+    const id = g.dataset.id, nbr = new Set([id]);
+    svg.querySelectorAll(".net-edge").forEach((ln) => {
+      const on = ln.dataset.a === id || ln.dataset.b === id;
+      ln.classList.toggle("on", on);
+      if (on) { nbr.add(ln.dataset.a); nbr.add(ln.dataset.b); }
+    });
+    svg.classList.add("focus");
+    svg.querySelectorAll(".net-node").forEach((nd) => nd.classList.toggle("dim", !nbr.has(nd.dataset.id)));
+  });
+  stage.addEventListener("mouseout", (e) => {
+    const g = e.target.closest(".net-node");
+    if (!g) { return; }
+    const svg = g.closest(".net-svg"); if (!svg) { return; }
+    svg.classList.remove("focus");
+    svg.querySelectorAll(".net-edge.on").forEach((ln) => ln.classList.remove("on"));
+    svg.querySelectorAll(".net-node.dim").forEach((nd) => nd.classList.remove("dim"));
+  });
+
   /* ---------- map tooltip (only present on map slides) ---------- */
   stage.addEventListener("mousemove", (e) => {
     const tip = document.getElementById("mapTip");

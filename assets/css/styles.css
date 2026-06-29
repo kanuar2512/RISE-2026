@@ -496,7 +496,7 @@ p { line-height: 1.6; }
 .rank-val { font-family: var(--font-display); font-size: clamp(1.2rem, 1.7vw, 1.7rem); color: var(--maroon); min-width: 2ch; text-align: right; }
 
 /* Rubric dashboard (Slide 13) */
-.dash-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(0.8rem, 1.4vw, 1.4rem); align-items: stretch; }
+.dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: clamp(0.8rem, 1.4vw, 1.4rem); align-items: stretch; }
 .dash-card { height: 100%; padding: clamp(1.2rem, 1.9vw, 1.9rem); display: flex; flex-direction: column; gap: 0.6rem; }
 .dash-ic {
   width: clamp(42px, 3.2vw, 54px); height: clamp(42px, 3.2vw, 54px); border-radius: 14px; display: grid; place-items: center;
@@ -563,6 +563,88 @@ p { line-height: 1.6; }
 /* section chips */
 .sec-chips { display: flex; flex-wrap: wrap; gap: clamp(0.6rem, 1.2vw, 1rem); }
 .sec-chip { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--maroon); border-radius: 12px; padding: clamp(0.8rem, 1.4vw, 1.2rem) clamp(1.1rem, 1.8vw, 1.6rem); font-family: var(--font-display); color: var(--maroon); font-size: clamp(1rem, 1.4vw, 1.45rem); box-shadow: var(--shadow-sm); }
+
+/* ============================================================
+   17. RESEARCH LANDSCAPE DECK (bibliometric infographics)
+   ============================================================ */
+/* profile board */
+.pb-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(0.9rem, 1.6vw, 1.4rem); }
+.pb-panel { padding: clamp(1rem, 1.6vw, 1.5rem); display: flex; flex-direction: column; gap: 0.7rem; }
+.pb-head { font-family: var(--font-display); color: var(--maroon); font-size: clamp(1rem, 1.3vw, 1.3rem); }
+.tm { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: clamp(150px, 17vw, 220px); }
+.tm-row { display: flex; gap: 6px; min-height: 0; flex-basis: 0; }
+.tm-tile { flex-basis: 0; min-width: 0; overflow: hidden; border-radius: 10px; padding: 0.55rem 0.75rem; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; background: var(--c); }
+.tm-v { font-family: var(--font-display); font-size: clamp(1.2rem, 1.8vw, 1.9rem); line-height: 1; }
+.tm-l { font-size: clamp(0.68rem, 0.82vw, 0.88rem); font-weight: 500; opacity: 0.95; line-height: 1.15; }
+.pb-donut { display: flex; align-items: center; gap: 1rem; }
+.pb-donut .donut { width: clamp(110px, 11vw, 165px); height: auto; flex: none; }
+.d-leg { display: flex; flex-direction: column; gap: 0.35rem; font-size: clamp(0.7rem, 0.88vw, 0.9rem); color: var(--ink); }
+.d-leg-i { display: flex; align-items: center; gap: 0.45rem; }
+.d-sw { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+.d-leg-i b { margin-left: auto; color: var(--maroon); font-family: var(--font-display); }
+.pb-bars { display: flex; flex-direction: column; gap: 0.5rem; }
+.pbar { display: grid; grid-template-columns: minmax(110px, 42%) 1fr auto; align-items: center; gap: 0.7rem; }
+.pbar-l { font-size: clamp(0.74rem, 0.9vw, 0.95rem); color: var(--ink); line-height: 1.2; }
+.pbar-t { height: 14px; background: var(--cream); border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+.pbar-t .bar-fill { height: 100%; width: 0; border-radius: 99px; background: var(--accent, var(--maroon)); transition: width 1.1s var(--ease); }
+.pbar-v { font-family: var(--font-display); color: var(--maroon); font-size: clamp(0.9rem, 1.1vw, 1.15rem); min-width: 1.5ch; text-align: right; }
+
+/* bubble chart */
+.bub-field { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: clamp(0.4rem, 1vw, 0.9rem); margin: clamp(0.4rem, 1.4vw, 1.1rem) 0; }
+.bub { display: flex; flex-direction: column; align-items: center; gap: 4px; width: calc(var(--d) + 26px); }
+.bub-c { width: var(--d); height: var(--d); border-radius: 50%; display: grid; place-items: center; background: linear-gradient(150deg, var(--gold), var(--gold-soft)); color: var(--maroon); box-shadow: var(--shadow-sm); }
+.bub-hot .bub-c { background: linear-gradient(150deg, var(--maroon), var(--maroon-deep)); color: #fff; box-shadow: var(--shadow-md); }
+.bub-n { font-family: var(--font-display); font-size: calc(var(--d) * 0.36); line-height: 1; }
+.bub-l { font-size: clamp(0.64rem, 0.78vw, 0.84rem); text-align: center; color: var(--ink); max-width: calc(var(--d) + 30px); line-height: 1.1; }
+.kw-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.kw-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 0.3rem 0.7rem 0.3rem 0.35rem; font-size: clamp(0.72rem, 0.88vw, 0.9rem); color: var(--ink); }
+.kw-chip b { background: var(--cream); color: var(--maroon); border-radius: 99px; width: 1.5rem; height: 1.5rem; display: inline-grid; place-items: center; font-family: var(--font-display); font-size: 0.8rem; }
+.kw-chip em { color: var(--maroon); font-style: normal; font-weight: 600; }
+.kw-top { border-color: var(--maroon); }
+.kw-top b { background: var(--maroon); color: #fff; }
+
+/* network graph */
+.net-layout { display: grid; grid-template-columns: 1.55fr 1fr; gap: clamp(1.2rem, 2.4vw, 2rem); align-items: center; }
+.net-holder { width: 100%; }
+.net-svg { width: 100%; height: auto; max-height: 66vh; display: block; }
+.net-edge { stroke: rgba(128,0,0,0.16); transition: stroke 0.25s, stroke-opacity 0.25s; }
+.net-edge.on { stroke: var(--maroon); stroke-opacity: 0.85; }
+.net-node { cursor: pointer; }
+.net-node circle { stroke: #fff; stroke-width: 1.5; transition: opacity 0.25s var(--ease), transform 0.25s var(--ease); transform-box: fill-box; transform-origin: center; }
+.net-node:hover circle { transform: scale(1.14); }
+.net-node.dim { opacity: 0.18; }
+.net-label { font-family: var(--font-body); font-size: 13px; fill: var(--ink); font-weight: 500; pointer-events: none; }
+.net-legend { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1.2rem; box-shadow: var(--shadow-sm); }
+.nl-title { font-family: var(--font-display); color: var(--maroon); font-size: 1.05rem; margin-bottom: 0.5rem; }
+.nl-row { display: flex; align-items: center; gap: 0.5rem; font-size: clamp(0.74rem, 0.9vw, 0.92rem); color: var(--ink); padding: 0.18rem 0; }
+.nl-dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.nl-meta { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.25rem; color: var(--muted); font-size: 0.78rem; }
+.net-obs { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; list-style: none; }
+.net-obs li { position: relative; padding-left: 1.1rem; color: var(--ink); font-size: clamp(0.82rem, 1vw, 1.02rem); line-height: 1.4; }
+.net-obs li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+
+/* cluster ecosystem + roadmap + insight */
+.outlook-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 2.6vw, 2.4rem); align-items: start; }
+.ol-head { font-family: var(--font-display); color: var(--maroon); font-size: clamp(1.05rem, 1.4vw, 1.4rem); margin-bottom: 0.6rem; }
+.eco-svg { width: 100%; height: auto; max-height: 50vh; display: block; }
+.eco-link { stroke: rgba(128,0,0,0.25); stroke-width: 2; }
+.eco-node circle { stroke: #fff; stroke-width: 2; }
+.eco-a { fill: #fff; font-family: var(--font-display); font-size: 22px; }
+.eco-hub { fill: var(--ink); }
+.eco-hub-t { fill: var(--gold); font-family: var(--font-display); font-size: 18px; }
+.eco-hub-t2 { fill: #fff; font-family: var(--font-display); font-size: 13px; }
+.eco-leg { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.6rem; }
+.eco-leg-i { display: flex; align-items: center; gap: 0.5rem; font-size: clamp(0.74rem, 0.9vw, 0.92rem); }
+.eco-leg-l { color: var(--ink); font-weight: 600; }
+.eco-leg-n { color: var(--muted); margin-left: auto; font-size: 0.8rem; white-space: nowrap; }
+.road { display: flex; flex-direction: column; gap: 0.7rem; }
+.road-item { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 12px; padding: 0.8rem 1.1rem; box-shadow: var(--shadow-sm); }
+.road-tag { display: inline-block; background: var(--cream); color: var(--maroon); border-radius: 99px; padding: 0.15rem 0.6rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.road-t { font-family: var(--font-display); color: var(--ink); font-size: clamp(1rem, 1.25vw, 1.25rem); margin-top: 0.3rem; }
+.road-d { color: var(--muted); font-size: clamp(0.8rem, 0.95vw, 0.95rem); line-height: 1.4; margin-top: 0.2rem; }
+.insight-card { margin-top: clamp(1rem, 2vw, 1.6rem); display: flex; align-items: center; gap: 1rem; background: linear-gradient(150deg, var(--maroon), var(--maroon-deep)); color: var(--cream); border-radius: var(--radius); padding: clamp(1.2rem, 2vw, 1.8rem); box-shadow: var(--shadow-lg); }
+.ins-ic { flex: none; width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: rgba(250,206,92,0.16); border: 1px solid rgba(250,206,92,0.4); color: var(--gold); }
+.insight-card p { color: var(--white); font-size: clamp(1rem, 1.3vw, 1.35rem); line-height: 1.5; font-weight: 300; }
 
 /* ============================================================
    15. HUB (deck launcher / landing)
