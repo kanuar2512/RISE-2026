@@ -592,9 +592,8 @@ p { line-height: 1.6; }
 /* bubble chart */
 .bub-field { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: clamp(0.4rem, 1vw, 0.9rem); margin: clamp(0.4rem, 1.4vw, 1.1rem) 0; }
 .bub { display: flex; flex-direction: column; align-items: center; gap: 4px; width: calc(var(--d) + 26px); }
-.bub-c { width: var(--d); height: var(--d); border-radius: 50%; display: grid; place-items: center; background: linear-gradient(150deg, var(--gold), var(--gold-soft)); color: var(--maroon); box-shadow: var(--shadow-sm); }
-.bub-hot .bub-c { background: linear-gradient(150deg, var(--maroon), var(--maroon-deep)); color: #fff; box-shadow: var(--shadow-md); }
-.bub-n { font-family: var(--font-display); font-size: calc(var(--d) * 0.36); line-height: 1; }
+.bub-c { width: var(--d); height: var(--d); border-radius: 50%; display: grid; place-items: center; background: var(--bg, var(--maroon)); color: var(--fg, #fff); box-shadow: var(--shadow-sm); }
+.bub-n { font-family: var(--font-display); font-size: calc(var(--d) * 0.36); line-height: 1; color: var(--fg, #fff); }
 .bub-l { font-size: clamp(0.64rem, 0.78vw, 0.84rem); text-align: center; color: var(--ink); max-width: calc(var(--d) + 30px); line-height: 1.1; }
 .kw-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
 .kw-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 0.3rem 0.7rem 0.3rem 0.35rem; font-size: clamp(0.72rem, 0.88vw, 0.9rem); color: var(--ink); }

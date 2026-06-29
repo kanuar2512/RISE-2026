@@ -572,6 +572,12 @@
      All render dynamically from the `research` data object.
      ============================================================ */
   const PALETTE = ["#800000", "#C77B30", "#E0B43C", "#6B4E2E", "#A33A52", "#9c4a2f"];
+  // single-hue maroon ramp: light (low value) -> deep (high value)
+  function maroonRamp(t) {
+    const a = [214, 150, 150], b = [94, 0, 0];
+    const c = a.map((v, i) => Math.round(v + (b[i] - v) * t));
+    return `rgb(${c[0]},${c[1]},${c[2]})`;
+  }
 
   // --- slice-and-dice treemap (2 balanced rows) ---
   function treemapTiles(items) {
@@ -611,9 +617,9 @@
   }
   function miniBars(items) {
     const max = Math.max(...items.map((x) => x.value));
-    return items.map((x, i) =>
+    return items.map((x) =>
       `<div class="pbar"><span class="pbar-l">${x.label}</span>` +
-      `<span class="pbar-t"><span class="bar-fill" data-w="${x.value / max * 100}" style="--accent:${x.color || PALETTE[i % PALETTE.length]}"></span></span>` +
+      `<span class="pbar-t"><span class="bar-fill" data-w="${x.value / max * 100}" style="--accent:${maroonRamp(x.value / max)}"></span></span>` +
       `<span class="pbar-v">${x.value}</span></div>`).join("");
   }
 
@@ -621,29 +627,26 @@
   C.profileBoard = function (d) {
     return sectionHead(d.eyebrow, d.title) +
       el("div", "pb-grid",
-        reveal(2, el("article", "card pb-panel", el("div", "pb-head", "Tema Penyelidikan") + treemapTiles(d.themes))) +
-        reveal(3, el("article", "card pb-panel", el("div", "pb-head", "Reka Bentuk Kajian") +
-          el("div", "pb-donut", donutSvg(d.design, "kajian") + legendList(d.design)))) +
-        reveal(4, el("article", "card pb-panel", el("div", "pb-head", "Populasi Kajian") + el("div", "pb-bars", miniBars(d.population)))) +
-        reveal(5, el("article", "card pb-panel", el("div", "pb-head", "Fokus Penguatkuasaan") + el("div", "pb-bars", miniBars(d.enforcement))))
-      ) +
-      reveal(6, el("div", "wf-note", el("span", "gold-rule") + el("span", "", d.observations.join("&nbsp;&nbsp;•&nbsp;&nbsp;"))));
+        reveal(2, el("article", "card pb-panel", el("div", "pb-head", "Research Themes") + treemapTiles(d.themes))) +
+        reveal(3, el("article", "card pb-panel", el("div", "pb-head", "Study Design") +
+          el("div", "pb-donut", donutSvg(d.design, "studies") + legendList(d.design)))) +
+        reveal(4, el("article", "card pb-panel", el("div", "pb-head", "Study Population") + el("div", "pb-bars", miniBars(d.population)))) +
+        reveal(5, el("article", "card pb-panel", el("div", "pb-head", "Enforcement Focus") + el("div", "pb-bars", miniBars(d.enforcement))))
+      );
   };
 
   /* ---- Slide 3: keyword bubble chart + tag chips ---- */
   C.bubbleChart = function (d) {
     const max = d.max;
-    const bubbles = d.top.slice(0, 14).map((t, i) => {
-      const dia = 56 + (t.freq / max) * 96;
-      return reveal(2 + i, `<div class="bub${i < 5 ? " bub-hot" : ""}" style="--d:${Math.round(dia)}px">` +
+    // every keyword as a bubble: size + darkness scale with frequency
+    const bubbles = d.top.map((t, i) => {
+      const tt = t.freq / max;
+      const dia = Math.round(62 + tt * 116);
+      const fg = tt > 0.42 ? "#FFFFFF" : "#5e0000";
+      return reveal(2 + i, `<div class="bub" style="--d:${dia}px;--bg:${maroonRamp(tt)};--fg:${fg}">` +
         `<span class="bub-c"><span class="bub-n">${t.freq}</span></span><span class="bub-l">${t.label}</span></div>`);
     }).join("");
-    const chips = d.top.map((t) =>
-      `<span class="kw-chip${t.rank <= 5 ? " kw-top" : ""}"><b>${t.rank}</b>${t.label}<em>${t.freq}</em></span>`).join("");
-    return sectionHead(d.eyebrow, d.title) +
-      el("div", "bub-field", bubbles) +
-      reveal(17, el("div", "kw-chips", chips)) +
-      reveal(18, el("div", "wf-note", el("span", "gold-rule") + el("span", "", d.observation)));
+    return sectionHead(d.eyebrow, d.title) + el("div", "bub-field", bubbles);
   };
 
   /* ---- Slide 4: keyword co-occurrence network (full width) ---- */
@@ -708,8 +711,8 @@
         el("span", "road-tag", e.tag) + el("div", "road-t", e.title) + el("p", "road-d", e.desc)))).join("");
     return sectionHead(d.eyebrow, d.title) +
       el("div", "outlook-grid",
-        reveal(2, el("div", "eco-wrap", el("div", "ol-head", "Kluster Penyelidikan") + eco)) +
-        el("div", "road", el("div", "ol-head", "Topik Penyelidikan Baharu") + road)
+        reveal(2, el("div", "eco-wrap", el("div", "ol-head", "Research Clusters") + eco)) +
+        el("div", "road", el("div", "ol-head", "Emerging Research Topics") + road)
       ) +
       reveal(10, el("div", "insight-card", el("span", "ins-ic", picon("flag")) + el("p", "", d.insight)));
   };
