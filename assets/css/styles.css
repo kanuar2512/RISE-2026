@@ -547,6 +547,19 @@ p { line-height: 1.6; }
 .sl-k { color: var(--ink); font-weight: 500; font-size: clamp(0.95rem, 1.2vw, 1.25rem); }
 .sl-v { font-family: var(--font-display); color: var(--maroon); font-size: clamp(1.1rem, 1.5vw, 1.6rem); }
 
+/* single image slide */
+.solo-wrap { display: flex; flex-direction: column; align-items: center; gap: clamp(0.7rem, 1.4vw, 1.1rem); }
+.solo-fig { margin: 0; width: 100%; max-width: 1200px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); background: var(--surface); }
+.solo-fig img { width: 100%; height: auto; max-height: 62vh; object-fit: contain; display: block; }
+.solo-cap { color: var(--muted); font-size: clamp(0.9rem, 1.1vw, 1.15rem); text-align: center; max-width: 72ch; }
+
+/* template image only + download */
+.tpl-only { display: flex; flex-direction: column; align-items: center; gap: clamp(1rem, 2vw, 1.6rem); }
+.tpl-fig { margin: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-md); background: var(--surface); }
+.tpl-fig img { height: 60vh; width: auto; max-width: 100%; object-fit: contain; display: block; }
+.tpl-dl { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--maroon); color: #fff; padding: 0.85rem 1.7rem; border-radius: 99px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-md); transition: transform 0.3s var(--ease), background 0.3s var(--ease); }
+.tpl-dl:hover { transform: translateY(-2px); background: var(--maroon-deep); }
+
 /* section chips */
 .sec-chips { display: flex; flex-wrap: wrap; gap: clamp(0.6rem, 1.2vw, 1rem); }
 .sec-chip { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--maroon); border-radius: 12px; padding: clamp(0.8rem, 1.4vw, 1.2rem) clamp(1.1rem, 1.8vw, 1.6rem); font-family: var(--font-display); color: var(--maroon); font-size: clamp(1rem, 1.4vw, 1.45rem); box-shadow: var(--shadow-sm); }

@@ -537,6 +537,25 @@
       el("div", "sl-list", rows);
   };
 
+  /* ---- Single full-width image slide ---- */
+  C.imageSolo = function (d) {
+    return sectionHead(d.eyebrow, d.title) +
+      (d.intro ? reveal(1, el("p", "slide-sub", d.intro)) : "") +
+      el("div", "solo-wrap",
+        reveal(2, `<figure class="solo-fig"><img src="${d.image}" alt="${d.title}"></figure>`) +
+        (d.caption ? reveal(3, el("p", "solo-cap", d.caption)) : "")
+      );
+  };
+
+  /* ---- Template image only + download button ---- */
+  C.posterTemplateOnly = function (d) {
+    return sectionHead(d.eyebrow, d.title) +
+      el("div", "tpl-only",
+        reveal(2, `<figure class="tpl-fig"><img src="${d.image}" alt="${d.title}"></figure>`) +
+        (d.download ? reveal(3, `<a class="tpl-dl" href="${d.download}" target="_blank" rel="noopener">${d.downloadLabel || "Muat turun templat"} &rarr;</a>`) : "")
+      );
+  };
+
   /* ---- Chips + note ---- */
   C.chipsNote = function (d) {
     const chips = d.chips.map((c, i) => reveal(2 + i, el("span", "sec-chip", c))).join("");
