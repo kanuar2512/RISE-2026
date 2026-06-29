@@ -616,11 +616,15 @@
       `<div class="d-leg-i"><span class="d-sw" style="background:${it.color}"></span>${it.label} <b>${it.value}</b></div>`).join("") + `</div>`;
   }
   function miniBars(items) {
-    const max = Math.max(...items.map((x) => x.value));
-    return items.map((x) =>
-      `<div class="pbar"><span class="pbar-l">${x.label}</span>` +
-      `<span class="pbar-t"><span class="bar-fill" data-w="${x.value / max * 100}" style="--accent:${maroonRamp(x.value / max)}"></span></span>` +
-      `<span class="pbar-v">${x.value}</span></div>`).join("");
+    const vals = items.map((x) => x.value);
+    const max = Math.max(...vals), min = Math.min(...vals);
+    return items.map((x) => {
+      const t = max === min ? 1 : (x.value - min) / (max - min); // normalise for clear light->dark
+      const w = (x.value / max * 100).toFixed(1);
+      return `<div class="pbar"><span class="pbar-l">${x.label}</span>` +
+        `<span class="pbar-t"><span class="bar-fill" data-w="${w}" style="width:${w}%;--accent:${maroonRamp(t)}"></span></span>` +
+        `<span class="pbar-v">${x.value}</span></div>`;
+    }).join("");
   }
 
   /* ---- Slide 2: research profile board ---- */
