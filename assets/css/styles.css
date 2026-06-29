@@ -654,7 +654,8 @@ p { line-height: 1.6; }
 /* ============================================================
    15. HUB (deck launcher / landing)
    ============================================================ */
-body.hub { overflow: auto; height: auto; background:
+/* hub scrolls within the body even though <html> hides overflow for decks */
+body.hub { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; background:
   radial-gradient(1100px 600px at 85% -10%, rgba(128,0,0,0.05), transparent 60%), var(--bg); }
 .hub-wrap { max-width: 1200px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem) 4rem; }
 .hub-head { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
