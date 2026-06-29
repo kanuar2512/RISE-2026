@@ -1,188 +1,161 @@
 /* ============================================================
-   DECK: Landskap Penyelidikan R&D — RISE 2026
+   DECK: R&D Research Landscape — RISE 2026
    Auto-generated bibliometric analysis of 24 accepted R&D
    abstracts (RnD.zip). All charts render dynamically from the
-   `research` data object below — replace the dataset only to
-   reuse for future RISE conferences.
+   `research` data object; replace the dataset to reuse for
+   future RISE conferences.
    ============================================================ */
 window.RISE = window.RISE || {};
 Object.assign(window.RISE, {
-  meta: { event: "RISE 2026", brandLine: "Landskap Penyelidikan R&D · Penguatkuasaan Farmasi" },
+  meta: { event: "RISE 2026", brandLine: "R&D Research Landscape \u00b7 Pharmacy Enforcement" },
   research: {
   "slide1": {
-    "title": "Landskap Penyelidikan RISE 2026",
+    "title": "RISE 2026 Research Landscape",
     "kpis": [
       {
         "value": "24",
-        "label": "Abstrak R&D Diterima",
+        "label": "Accepted R&D Abstracts",
         "icon": "list"
       },
       {
         "value": "5",
-        "label": "Tema Penyelidikan",
+        "label": "Research Themes",
         "icon": "target"
       },
       {
         "value": "27",
-        "label": "Kata Kunci Terpiawai",
+        "label": "Standardised Keywords",
         "icon": "award"
       },
       {
         "value": "5",
-        "label": "Kluster Penyelidikan",
+        "label": "Research Clusters",
         "icon": "panel"
       }
     ],
-    "message": "24 abstrak R&D yang diterima membentuk landskap penyelidikan penguatkuasaan farmasi yang matang — didominasi kajian pengetahuan, kepatuhan & amalan farmasi (9), diikuti reformasi perundangan (5) dan kawalan produk tidak berdaftar (4). Tema baharu yang muncul: penguatkuasaan digital, pendigitalan regulatori dan integrasi jenayah kewangan."
+    "message": "The 24 accepted R&D abstracts form a mature pharmacy-enforcement research landscape — led by knowledge, compliance & practice studies (9), followed by legislative reform (5) and unregistered-product control (4). Emerging themes include digital enforcement, regulatory digitalisation and financial-crime integration."
   },
   "profile": {
     "themes": [
       {
-        "label": "Produk Tidak Berdaftar & Tiruan",
+        "label": "Unregistered & Counterfeit Products",
         "value": 4,
         "color": "#800000"
       },
       {
-        "label": "Kawalan Sempadan & Import",
+        "label": "Border & Import Control",
         "value": 3,
         "color": "#C77B30"
       },
       {
-        "label": "Penguatkuasaan Digital & Dalam Talian",
+        "label": "Digital & Online Enforcement",
         "value": 3,
         "color": "#E0B43C"
       },
       {
-        "label": "Perundangan & Reformasi Regulatori",
+        "label": "Legislation & Regulatory Reform",
         "value": 5,
         "color": "#6B4E2E"
       },
       {
-        "label": "Pengetahuan, Kepatuhan & Amalan",
+        "label": "Knowledge, Compliance & Practice",
         "value": 9,
         "color": "#A33A52"
       }
     ],
     "design": [
       {
-        "label": "Tinjauan Keratan Rentas",
+        "label": "Cross-sectional Survey",
         "value": 7,
         "color": "#800000"
       },
       {
-        "label": "Analisis Retrospektif / Pangkalan Data",
+        "label": "Retrospective / Database Analysis",
         "value": 6,
         "color": "#C77B30"
       },
       {
-        "label": "Kajian Kualitatif",
+        "label": "Qualitative Study",
         "value": 4,
         "color": "#E0B43C"
       },
       {
-        "label": "Analisis Perundangan / Doktrinal",
+        "label": "Legal / Doctrinal Analysis",
         "value": 3,
         "color": "#6B4E2E"
       },
       {
-        "label": "Ulasan Skop / Pembangunan Instrumen",
+        "label": "Scoping Review / Instrument Dev.",
         "value": 2,
         "color": "#A33A52"
       },
       {
-        "label": "Eksperimen (RCT) / Kaedah Campuran",
+        "label": "Experimental (RCT) / Mixed-methods",
         "value": 2,
         "color": "#9c4a2f"
       }
     ],
-    "methodology": [
-      {
-        "label": "Kuantitatif",
-        "value": 15,
-        "color": "#800000"
-      },
-      {
-        "label": "Kualitatif",
-        "value": 4,
-        "color": "#C77B30"
-      },
-      {
-        "label": "Perundangan / Doktrinal",
-        "value": 3,
-        "color": "#6B4E2E"
-      },
-      {
-        "label": "Kaedah Campuran",
-        "value": 1,
-        "color": "#E0B43C"
-      },
-      {
-        "label": "Ulasan Sistematik",
-        "value": 1,
-        "color": "#A33A52"
-      }
-    ],
     "population": [
       {
-        "label": "Ahli Farmasi Komuniti",
+        "label": "Community Pharmacists",
         "value": 6
       },
       {
-        "label": "Rekod Penguatkuasaan / Rampasan",
+        "label": "Enforcement / Seizure Records",
         "value": 6
       },
       {
-        "label": "Dokumen & Kes Perundangan",
+        "label": "Legal Documents & Cases",
         "value": 5
       },
       {
-        "label": "Orang Awam",
+        "label": "General Public",
         "value": 2
       },
       {
-        "label": "Iklan & Aduan Dalam Talian",
+        "label": "Online Ads & Complaints",
         "value": 2
       },
       {
-        "label": "Lain-lain (Kakitangan, Pesalah, Peniaga)",
+        "label": "Others (Staff, Offenders, Operators)",
         "value": 3
       }
     ],
     "enforcement": [
       {
-        "label": "Produk Tidak Berdaftar / Tiruan",
+        "label": "Unregistered / Counterfeit Products",
         "value": 5
       },
       {
-        "label": "Dalam Talian & Pengiklanan",
+        "label": "Online & Advertising",
         "value": 5
       },
       {
-        "label": "Pengetahuan & Pendaftaran",
+        "label": "Knowledge & Registration",
         "value": 4
       },
       {
-        "label": "Amalan Farmasi & Kesihatan Digital",
+        "label": "Pharmacy Practice & Digital Health",
         "value": 4
       },
       {
-        "label": "Perundangan & Penalti",
+        "label": "Legislation & Penalties",
         "value": 4
       },
       {
-        "label": "Kawalan Sempadan & Import",
+        "label": "Border & Import Control",
         "value": 2
       }
     ],
     "observations": [
-      "Hampir separuh kajian (9/24) memberi fokus kepada pengetahuan, kepatuhan dan amalan farmasi.",
-      "Reka bentuk dominan: tinjauan keratan rentas (7) dan analisis retrospektif pangkalan data (6).",
-      "Kaedah kuantitatif mendominasi (15/24), disokong kajian kualitatif dan analisis perundangan."
+      "Nearly half of all studies (9/24) focus on knowledge, compliance and pharmacy practice.",
+      "Dominant designs: cross-sectional surveys (7) and retrospective database analyses (6).",
+      "Quantitative methods dominate (15/24), complemented by qualitative and legal-doctrinal studies."
     ],
-    "title": "Profil Penyelidikan RISE 2026"
+    "title": "Research Profile"
   },
   "keywords": {
-    "title": "Kata Kunci Dominan",
+    "title": "Dominant Keywords",
     "top": [
       {
         "rank": 1,
@@ -306,226 +279,228 @@ Object.assign(window.RISE, {
       }
     ],
     "max": 13,
-    "observation": "Fokus penyelidikan tertumpu pada kepatuhan regulatori, penguatkuasaan undang-undang farmasi dan produk tidak berdaftar — mencerminkan keutamaan menangani produk haram dan ketidakpatuhan."
+    "observation": "Research focus centres on regulatory compliance, pharmacy law enforcement and unregistered products — reflecting the priority of tackling illicit products and non-compliance."
   },
   "network": {
-    "title": "Pemetaan Hubungan Penyelidikan",
+    "title": "Research Relationship Mapping",
+    "viewW": 1440,
+    "viewH": 760,
     "nodes": [
       {
         "id": "Regulatory Compliance",
         "label": "Regulatory Compliance",
         "freq": 13,
         "cluster": "T5",
-        "x": 305.0,
-        "y": 263.1
+        "x": 434.7,
+        "y": 295.3
       },
       {
         "id": "Pharmacy Law Enforcement",
         "label": "Pharmacy Law Enforcement",
         "freq": 10,
         "cluster": "T1",
-        "x": 500.0,
-        "y": 146.9
+        "x": 720.0,
+        "y": 117.0
       },
       {
         "id": "Unregistered Products",
         "label": "Unregistered Products",
         "freq": 8,
         "cluster": "T1",
-        "x": 558.6,
-        "y": 209.4
+        "x": 834.0,
+        "y": 117.0
       },
       {
         "id": "Controlled Medicines",
         "label": "Controlled Medicines",
         "freq": 7,
         "cluster": "T2",
-        "x": 695.0,
-        "y": 263.1
+        "x": 1005.3,
+        "y": 295.3
       },
       {
         "id": "Community Pharmacy",
         "label": "Community Pharmacy",
         "freq": 7,
         "cluster": "T5",
-        "x": 389.3,
-        "y": 323.2
+        "x": 564.7,
+        "y": 295.3
       },
       {
         "id": "Public Health Protection",
         "label": "Public Health Protection",
         "freq": 7,
         "cluster": "T5",
-        "x": 315.5,
-        "y": 313.7
+        "x": 526.6,
+        "y": 378.0
       },
       {
         "id": "Knowledge & Awareness",
         "label": "Knowledge & Awareness",
         "freq": 7,
         "cluster": "T5",
-        "x": 250.0,
-        "y": 344.0
+        "x": 434.7,
+        "y": 412.3
       },
       {
         "id": "Comparative Legal Analysis",
         "label": "Comparative Legal Analysis",
         "freq": 6,
         "cluster": "T4",
-        "x": 379.5,
-        "y": 451.0
+        "x": 543.7,
+        "y": 583.7
       },
       {
         "id": "Seizure & Confiscation",
         "label": "Seizure & Confiscation",
         "freq": 5,
         "cluster": "T2",
-        "x": 664.0,
-        "y": 308.7
+        "x": 1087.3,
+        "y": 295.3
       },
       {
         "id": "Poisons Act 1952",
         "label": "Poisons Act 1952",
         "freq": 5,
         "cluster": "T4",
-        "x": 403.6,
-        "y": 514.1
+        "x": 641.7,
+        "y": 583.7
       },
       {
         "id": "Penalties & Sentencing",
         "label": "Penalties & Sentencing",
         "freq": 4,
         "cluster": "T1",
-        "x": 488.5,
-        "y": 189.7
+        "x": 777.0,
+        "y": 205.9
       },
       {
         "id": "Online & E-Commerce",
         "label": "Online & E-Commerce",
         "freq": 4,
         "cluster": "T3",
-        "x": 620.5,
-        "y": 451.0
+        "x": 896.3,
+        "y": 583.7
       },
       {
         "id": "Entry-Point Screening",
         "label": "Entry-Point Screening",
         "freq": 3,
         "cluster": "T2",
-        "x": 677.9,
-        "y": 238.0
+        "x": 923.3,
+        "y": 295.3
       },
       {
         "id": "Medicine Advertising",
         "label": "Medicine Advertising",
         "freq": 3,
         "cluster": "T3",
-        "x": 589.5,
-        "y": 496.6
+        "x": 978.3,
+        "y": 583.7
       },
       {
         "id": "Counterfeit & Adulteration",
         "label": "Counterfeit & Adulteration",
         "freq": 3,
         "cluster": "T1",
-        "x": 415.3,
-        "y": 181.6
+        "x": 663.0,
+        "y": 205.9
       },
       {
         "id": "Cosmetics Regulation",
         "label": "Cosmetics Regulation",
         "freq": 3,
         "cluster": "T1",
-        "x": 453.4,
-        "y": 127.8
+        "x": 606.0,
+        "y": 117.0
       },
       {
         "id": "Qualitative Research",
         "label": "Qualitative Research",
         "freq": 2,
         "cluster": "T1",
-        "x": 479.1,
-        "y": 69.0
+        "x": 663.0,
+        "y": 28.1
       },
       {
         "id": "Digital Health & E-Prescription",
         "label": "Digital Health & E-Prescription",
         "freq": 2,
         "cluster": "T4",
-        "x": 344.8,
-        "y": 472.4
+        "x": 543.7,
+        "y": 671.9
       },
       {
         "id": "Diphenhydramine Diversion",
         "label": "Diphenhydramine Diversion",
         "freq": 2,
         "cluster": "T4",
-        "x": 316.4,
-        "y": 412.0
+        "x": 445.7,
+        "y": 583.7
       },
       {
         "id": "Operation Pangea",
         "label": "Operation Pangea",
         "freq": 2,
         "cluster": "T3",
-        "x": 603.4,
-        "y": 425.9
+        "x": 814.3,
+        "y": 583.7
       },
       {
         "id": "Medicine Registration",
         "label": "Medicine Registration",
         "freq": 2,
         "cluster": "T5",
-        "x": 248.2,
-        "y": 280.6
+        "x": 342.8,
+        "y": 378.0
       },
       {
         "id": "Sale of Drugs Act 1952",
         "label": "Sale of Drugs Act 1952",
         "freq": 1,
         "cluster": "T1",
-        "x": 532.2,
-        "y": 112.5
+        "x": 777.0,
+        "y": 28.1
       },
       {
         "id": "Medication Labelling",
         "label": "Medication Labelling",
         "freq": 1,
         "cluster": "T5",
-        "x": 201.7,
-        "y": 231.1
+        "x": 304.7,
+        "y": 295.3
       },
       {
         "id": "Health Education",
         "label": "Health Education",
         "freq": 1,
         "cluster": "T5",
-        "x": 274.8,
-        "y": 218.5
+        "x": 342.8,
+        "y": 212.5
       },
       {
         "id": "Anti-Money Laundering",
         "label": "Anti-Money Laundering",
         "freq": 1,
         "cluster": "T4",
-        "x": 392.8,
-        "y": 416.3
+        "x": 543.7,
+        "y": 495.5
       },
       {
         "id": "Zoning Policy",
         "label": "Zoning Policy",
         "freq": 1,
         "cluster": "T5",
-        "x": 324.1,
-        "y": 171.0
+        "x": 434.7,
+        "y": 178.3
       },
       {
         "id": "Good Pharmacy Practice",
         "label": "Good Pharmacy Practice",
         "freq": 1,
         "cluster": "T5",
-        "x": 351.4,
-        "y": 230.0
+        "x": 526.6,
+        "y": 212.5
       }
     ],
     "edges": [
@@ -788,43 +763,51 @@ Object.assign(window.RISE, {
     "clusters": [
       {
         "id": "T1",
-        "label": "Produk Tidak Berdaftar & Tiruan",
+        "label": "Unregistered & Counterfeit Products",
         "color": "#800000"
       },
       {
         "id": "T2",
-        "label": "Kawalan Sempadan & Import",
+        "label": "Border & Import Control",
         "color": "#C77B30"
       },
       {
         "id": "T3",
-        "label": "Penguatkuasaan Digital & Dalam Talian",
+        "label": "Digital & Online Enforcement",
         "color": "#E0B43C"
       },
       {
         "id": "T4",
-        "label": "Perundangan & Reformasi Regulatori",
+        "label": "Legislation & Regulatory Reform",
         "color": "#6B4E2E"
       },
       {
         "id": "T5",
-        "label": "Pengetahuan, Kepatuhan & Amalan",
+        "label": "Knowledge, Compliance & Practice",
         "color": "#A33A52"
       }
     ],
-    "observations": [
-      "“Regulatory Compliance” dan “Pharmacy Law Enforcement” ialah nod hub yang menghubungkan hampir semua kluster.",
-      "Kluster produk tidak berdaftar berkait rapat dengan rampasan, produk terkawal dan kawalan sempadan.",
-      "Kluster digital (dalam talian, e-dagang, pengiklanan) muncul sebagai rangkaian tersendiri yang berkembang.",
-      "Kluster perundangan disatukan oleh analisis perbandingan, Akta Racun 1952 dan penalti/penghukuman."
+    "legendTitle": "Clusters",
+    "legendSize": "Node size = keyword frequency",
+    "legendStrength": "Line thickness = relationship strength"
+  },
+  "insights": {
+    "title": "Network Insights",
+    "intro": "Key patterns derived from the keyword co-occurrence network.",
+    "items": [
+      "“Regulatory Compliance” and “Pharmacy Law Enforcement” act as hub nodes linking nearly all clusters.",
+      "The unregistered-products cluster is tightly coupled with seizures, controlled medicines and border control.",
+      "The digital cluster — online, e-commerce and advertising — emerges as a distinct, growing sub-network.",
+      "The legislation cluster is unified by comparative analysis, the Poisons Act 1952 and penalties/sentencing.",
+      "Knowledge, compliance and community-pharmacy keywords form the largest and most central cluster."
     ]
   },
   "outlook": {
-    "title": "Hala Tuju Penyelidikan R&D RISE 2026",
+    "title": "Research Directions & Emerging Topics",
     "clusters": [
       {
         "id": "T1",
-        "label": "Produk Tidak Berdaftar & Tiruan",
+        "label": "Unregistered & Counterfeit Products",
         "color": "#800000",
         "abstracts": 4,
         "keywords": [
@@ -839,7 +822,7 @@ Object.assign(window.RISE, {
       },
       {
         "id": "T2",
-        "label": "Kawalan Sempadan & Import",
+        "label": "Border & Import Control",
         "color": "#C77B30",
         "abstracts": 3,
         "keywords": [
@@ -851,7 +834,7 @@ Object.assign(window.RISE, {
       },
       {
         "id": "T3",
-        "label": "Penguatkuasaan Digital & Dalam Talian",
+        "label": "Digital & Online Enforcement",
         "color": "#E0B43C",
         "abstracts": 3,
         "keywords": [
@@ -863,7 +846,7 @@ Object.assign(window.RISE, {
       },
       {
         "id": "T4",
-        "label": "Perundangan & Reformasi Regulatori",
+        "label": "Legislation & Regulatory Reform",
         "color": "#6B4E2E",
         "abstracts": 5,
         "keywords": [
@@ -877,7 +860,7 @@ Object.assign(window.RISE, {
       },
       {
         "id": "T5",
-        "label": "Pengetahuan, Kepatuhan & Amalan",
+        "label": "Knowledge, Compliance & Practice",
         "color": "#A33A52",
         "abstracts": 9,
         "keywords": [
@@ -893,32 +876,32 @@ Object.assign(window.RISE, {
     ],
     "emerging": [
       {
-        "title": "Penguatkuasaan Digital & Pemantauan Algoritma",
-        "tag": "Dalam Talian",
-        "desc": "Pemantauan proaktif e-dagang & media sosial, pengesahan identiti penjual, protokol takedown bersama platform."
+        "title": "Digital Enforcement & Algorithmic Monitoring",
+        "tag": "Online",
+        "desc": "Proactive e-commerce & social-media surveillance, vendor identity verification, and joint platform takedown protocols."
       },
       {
-        "title": "Pendigitalan Regulatori & Preskripsi Elektronik",
-        "tag": "Kesihatan Digital",
-        "desc": "Rekod elektronik, pemantauan berpusat, dan penerimaan EPS dalam amalan farmasi."
+        "title": "Regulatory Digitalisation & E-Prescription",
+        "tag": "Digital Health",
+        "desc": "Electronic records, centralised monitoring and EPS adoption in pharmacy practice."
       },
       {
-        "title": "Reformasi Perundangan & Penalti Berperingkat",
-        "tag": "Perundangan",
-        "desc": "Definisi statutori jelas, garis panduan penghukuman dan penalti berperingkat untuk pencegahan berkesan."
+        "title": "Legislative Reform & Tiered Penalties",
+        "tag": "Legislation",
+        "desc": "Clear statutory definitions, sentencing guidelines and tiered penalties for effective deterrence."
       },
       {
-        "title": "Integrasi Jenayah Kewangan (AMLA)",
-        "tag": "Baharu",
-        "desc": "Memasukkan kesalahan farmaseutikal terpilih ke dalam rangka kerja anti-pengubahan wang haram."
+        "title": "Financial-Crime Integration (AMLA)",
+        "tag": "Emerging",
+        "desc": "Inserting selected pharmaceutical offences into the anti-money-laundering framework."
       },
       {
-        "title": "Penguatkuasaan Progresif & Berasaskan Risiko",
-        "tag": "Model Baharu",
-        "desc": "Pendekatan didik-dahulu, indeks rampasan berwajaran (WCI) dan sasaran berasaskan risiko."
+        "title": "Progressive & Risk-Based Enforcement",
+        "tag": "New Model",
+        "desc": "Education-first approaches, the Weighted Confiscation Index (WCI) and risk-based targeting."
       }
     ],
-    "insight": "Landskap penyelidikan RISE 2026 beralih daripada penguatkuasaan reaktif konvensional ke arah pendekatan digital, berasaskan data dan progresif — memerlukan pemodenan perundangan, pemantauan dalam talian proaktif, dan kerjasama pelbagai agensi."
+    "insight": "RISE 2026 research is shifting from conventional reactive enforcement toward a digital, data-driven and progressive approach — calling for legislative modernisation, proactive online monitoring and multi-agency collaboration."
   },
   "kpiMeta": {
     "total": 24,
@@ -928,18 +911,18 @@ Object.assign(window.RISE, {
   }
 }
 });
-
 window.RISE_DECKS = window.RISE_DECKS || {};
 window.RISE_DECKS["research-rnd"] = {
   id: "research-rnd",
-  title: "Landskap Penyelidikan R&D",
-  subtitle: "Analisis bibliometrik 24 abstrak R&D RISE 2026",
+  title: "R&D Research Landscape",
+  subtitle: "Bibliometric analysis of 24 RISE 2026 R&D abstracts",
   meta: window.RISE.meta,
   slides: [
-    { key: "landscape",                  render: () => window.RISE.components.rubricDashboard(window.RISE.research.slide1) },
-    { key: "profile",  cls: "slide--top", render: () => window.RISE.components.profileBoard(window.RISE.research.profile) },
-    { key: "keywords", cls: "slide--top", render: () => window.RISE.components.bubbleChart(window.RISE.research.keywords) },
-    { key: "network",  cls: "slide--top", render: () => window.RISE.components.networkGraph(window.RISE.research.network) },
-    { key: "outlook",  cls: "slide--top", render: () => window.RISE.components.landscapeOutlook(window.RISE.research.outlook) }
+    { key: "landscape",                   render: () => window.RISE.components.rubricDashboard(window.RISE.research.slide1) },
+    { key: "profile",   cls: "slide--top", render: () => window.RISE.components.profileBoard(window.RISE.research.profile) },
+    { key: "keywords",  cls: "slide--top", render: () => window.RISE.components.bubbleChart(window.RISE.research.keywords) },
+    { key: "network",   cls: "slide--top", render: () => window.RISE.components.networkGraph(window.RISE.research.network) },
+    { key: "insights",  cls: "slide--top", render: () => window.RISE.components.observationCards(window.RISE.research.insights) },
+    { key: "outlook",   cls: "slide--top", render: () => window.RISE.components.landscapeOutlook(window.RISE.research.outlook) }
   ]
 };

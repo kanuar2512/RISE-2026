@@ -604,9 +604,15 @@ p { line-height: 1.6; }
 .kw-top b { background: var(--maroon); color: #fff; }
 
 /* network graph */
-.net-layout { display: grid; grid-template-columns: 1.55fr 1fr; gap: clamp(1.2rem, 2.4vw, 2rem); align-items: center; }
-.net-holder { width: 100%; }
-.net-svg { width: 100%; height: auto; max-height: 66vh; display: block; }
+.net-holder--full { position: relative; width: 100%; }
+.net-svg { width: 100%; height: auto; max-height: 74vh; display: block; }
+.lab-min { opacity: 0; transition: opacity 0.2s var(--ease); }
+.net-node:hover .lab-min { opacity: 1; }
+.net-legend--ov { position: absolute; top: 8px; right: 8px; max-width: clamp(220px, 23vw, 320px); background: rgba(255,255,255,0.94); backdrop-filter: blur(5px); }
+.obs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2vw, 1.6rem); }
+.obs-card { display: flex; align-items: flex-start; gap: 1rem; padding: clamp(1.2rem, 2vw, 1.8rem); border-left: 5px solid var(--gold); }
+.obs-no { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--maroon); line-height: 1; flex: none; }
+.obs-t { color: var(--ink); font-size: clamp(1rem, 1.25vw, 1.3rem); line-height: 1.45; }
 .net-edge { stroke: rgba(128,0,0,0.16); transition: stroke 0.25s, stroke-opacity 0.25s; }
 .net-edge.on { stroke: var(--maroon); stroke-opacity: 0.85; }
 .net-node { cursor: pointer; }

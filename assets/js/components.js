@@ -646,7 +646,7 @@
       reveal(18, el("div", "wf-note", el("span", "gold-rule") + el("span", "", d.observation)));
   };
 
-  /* ---- Slide 4: keyword co-occurrence network ---- */
+  /* ---- Slide 4: keyword co-occurrence network (full width) ---- */
   C.networkGraph = function (d) {
     const maxF = Math.max(...d.nodes.map((n) => n.freq));
     const cmap = {}; d.clusters.forEach((c) => { cmap[c.id] = c.color; });
@@ -656,21 +656,29 @@
       return `<line class="net-edge" data-a="${e.a}" data-b="${e.b}" x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" stroke-width="${(0.5 + e.w * 0.9).toFixed(1)}"></line>`;
     }).join("");
     const nodes = d.nodes.map((n) => {
-      const r = (9 + (n.freq / maxF) * 30).toFixed(1);
+      const r = (10 + (n.freq / maxF) * 34).toFixed(1);
       const col = cmap[n.cluster] || "#800000";
-      const lab = n.freq >= 5 ? `<text class="net-label" x="${n.x}" y="${(n.y - r - 6)}" text-anchor="middle">${n.label}</text>` : "";
-      return `<g class="net-node" data-id="${n.id}"><circle cx="${n.x}" cy="${n.y}" r="${r}" fill="${col}"></circle>${lab}</g>`;
+      const small = n.freq < 6;
+      return `<g class="net-node" data-id="${n.id}"><circle cx="${n.x}" cy="${n.y}" r="${r}" fill="${col}"></circle>` +
+        `<text class="net-label${small ? " lab-min" : ""}" x="${n.x}" y="${(n.y - r - 7)}" text-anchor="middle">${n.label}</text></g>`;
     }).join("");
-    const legend = el("div", "net-legend",
-      el("div", "nl-title", "Kluster") +
+    const legend = el("div", "net-legend net-legend--ov",
+      el("div", "nl-title", d.legendTitle || "Clusters") +
       d.clusters.map((c) => `<div class="nl-row"><span class="nl-dot" style="background:${c.color}"></span>${c.label}</div>`).join("") +
-      el("div", "nl-meta", "<span>Saiz nod = kekerapan kata kunci</span><span>Tebal garis = kekuatan hubungan</span>"));
-    const obs = "<ul class='net-obs'>" + d.observations.map((o) => `<li>${o}</li>`).join("") + "</ul>";
+      el("div", "nl-meta", `<span>${d.legendSize || "Node size = keyword frequency"}</span><span>${d.legendStrength || "Line thickness = relationship strength"}</span>`));
+    const vb = `0 0 ${d.viewW || 1440} ${d.viewH || 760}`;
     return sectionHead(d.eyebrow, d.title) +
-      el("div", "net-layout",
-        reveal(2, `<div class="net-holder"><svg class="net-svg" viewBox="0 0 1000 630">${edges}${nodes}</svg></div>`) +
-        el("div", "net-side", reveal(3, legend) + reveal(4, obs))
-      );
+      reveal(2, `<div class="net-holder net-holder--full"><svg class="net-svg" viewBox="${vb}">${edges}${nodes}</svg>${legend}</div>`);
+  };
+
+  /* ---- Observation cards (e.g. network insights) ---- */
+  C.observationCards = function (d) {
+    const cards = d.items.map((t, i) =>
+      reveal(2 + i, el("article", "card obs-card",
+        el("span", "obs-no", String(i + 1).padStart(2, "0")) + el("p", "obs-t", t)))).join("");
+    return sectionHead(d.eyebrow, d.title) +
+      (d.intro ? reveal(1, el("p", "slide-sub", d.intro)) : "") +
+      el("div", "obs-grid", cards);
   };
 
   /* ---- Slide 5: cluster ecosystem + emerging roadmap + insight ---- */
