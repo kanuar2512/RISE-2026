@@ -1,0 +1,529 @@
+/* ============================================================
+   RISE 2026 — Premium Keynote Presentation
+   styles.css : Theme tokens, base, layout, components, motion
+   Edit DESIGN TOKENS only to re-skin the whole deck.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. DESIGN TOKENS  (official RISE visual identity)
+   ---------------------------------------------------------- */
+:root {
+  /* Brand colours */
+  --maroon:      #800000;
+  --maroon-deep: #5e0000;
+  --ink:         #1A1A1A;
+  --gold:        #FACE5C;
+  --gold-soft:   #F9E871;
+  --cream:       #FFF4D6;
+  --white:       #FFFFFF;
+
+  /* Functional surfaces */
+  --bg:          var(--cream);
+  --surface:     var(--white);
+  --text:        var(--ink);
+  --muted:       #6b5f4d;
+  --line:        rgba(128, 0, 0, 0.14);
+
+  /* Typography */
+  --font-display: "Sugo Display", "Fraunces", "Playfair Display", Georgia, serif;
+  --font-body:    "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Rhythm */
+  --pad-x: clamp(3rem, 7vw, 8rem);
+  --radius: 22px;
+  --shadow-sm: 0 2px 14px rgba(94, 0, 0, 0.06);
+  --shadow-md: 0 14px 50px rgba(94, 0, 0, 0.10);
+  --shadow-lg: 0 30px 90px rgba(94, 0, 0, 0.16);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.8s;
+}
+
+/* ----------------------------------------------------------
+   2. RESET / BASE
+   ---------------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--ink);
+  font-family: var(--font-body);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.04; letter-spacing: -0.01em; }
+p { line-height: 1.6; }
+
+/* ----------------------------------------------------------
+   3. DECK + SLIDE SYSTEM (16:9, 1920x1080 reference)
+   ---------------------------------------------------------- */
+#deck {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(128,0,0,0.05), transparent 60%),
+    var(--bg);
+}
+
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 56.25vw;          /* 16:9 */
+  max-height: 100vh;
+  max-width: 177.78vh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 5.5rem) var(--pad-x);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(28px) scale(0.992);
+  transition: opacity 0.7s var(--ease), transform 0.9s var(--ease), visibility 0s 0.7s;
+  background: var(--bg);
+}
+.slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.7s var(--ease), transform 0.9s var(--ease);
+  z-index: 2;
+}
+.slide.is-past { transform: translateY(-24px) scale(0.992); }
+
+/* Type scale (fluid, projector-first) */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: clamp(0.7rem, 0.9vw, 0.95rem);
+  color: var(--maroon);
+}
+.slide-title { font-size: clamp(2.1rem, 4.4vw, 4.4rem); color: var(--maroon); }
+.slide-sub   { font-size: clamp(1rem, 1.5vw, 1.5rem); color: var(--muted); font-weight: 400; max-width: 60ch; }
+.display-xl  { font-size: clamp(3.2rem, 7vw, 7rem); color: var(--maroon); }
+
+/* ----------------------------------------------------------
+   4. SHARED PRIMITIVES
+   ---------------------------------------------------------- */
+.gold-rule {
+  width: 64px; height: 5px; border-radius: 99px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+
+.section-head { display: flex; flex-direction: column; gap: 1rem; margin-bottom: clamp(1.5rem, 3vw, 2.75rem); }
+.section-head .row { display: flex; align-items: baseline; gap: 1.25rem; flex-wrap: wrap; }
+
+/* ----------------------------------------------------------
+   5. SLIDE 1 — HERO
+   ---------------------------------------------------------- */
+.hero {
+  background:
+    radial-gradient(900px 600px at 12% 0%, rgba(250,206,92,0.16), transparent 55%),
+    radial-gradient(1100px 800px at 100% 120%, rgba(0,0,0,0.35), transparent 60%),
+    linear-gradient(150deg, var(--maroon) 0%, var(--maroon-deep) 100%);
+  color: var(--cream);
+}
+.hero .eyebrow { color: var(--gold); }
+.hero .display-xl { color: var(--white); }
+
+/* --- Slide 1 : centred cover --- */
+.hero-cover {
+  height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: clamp(1rem, 2vw, 1.8rem);
+}
+.hero-cover .slide-sub { color: rgba(255,244,214,0.82); margin: 0 auto; max-width: 52ch; }
+
+/* Logos pinned to the top corners — no white panel */
+.hero-logo {
+  position: absolute;
+  top: clamp(2rem, 4vw, 3.4rem);
+  height: clamp(78px, 9vw, 122px);
+  width: auto;
+  z-index: 4;
+}
+.hero-logo--left  { left: var(--pad-x);  filter: brightness(0) invert(1); opacity: 0.96; }
+.hero-logo--right { right: var(--pad-x); filter: drop-shadow(0 8px 22px rgba(0,0,0,0.28)); }
+.hero-conf {
+  display: inline-flex; flex-direction: column; gap: 0.4rem;
+  padding: 1rem 1.6rem; border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(250,206,92,0.32);
+  backdrop-filter: blur(6px);
+}
+.hero-conf small { color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; font-size: clamp(0.66rem,0.85vw,0.78rem); font-weight: 600; }
+.hero-conf b { font-weight: 600; font-size: clamp(0.95rem, 1.25vw, 1.35rem); color: var(--white); }
+
+/* --- Slide 2 : Maklumat Simposium (light) --- */
+.event-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 1.8vw, 1.7rem); align-items: stretch; }
+.event-card {
+  height: 100%;                 /* uniform height across the row */
+  padding: clamp(1.1rem, 1.8vw, 1.8rem) clamp(1.2rem, 1.9vw, 1.9rem);
+  display: flex; flex-direction: column; justify-content: center; gap: 0.55rem;
+  position: relative; overflow: hidden;
+}
+.event-card::before { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 6px; background: linear-gradient(var(--gold), var(--gold-soft)); }
+.ev-label { color: var(--maroon); font-size: clamp(0.72rem,0.9vw,0.85rem); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.ev-value { color: var(--ink); font-size: clamp(1.05rem, 1.45vw, 1.55rem); font-weight: 500; line-height: 1.32; }
+.event-feature {
+  margin-top: clamp(1rem, 1.8vw, 1.7rem);
+  background: linear-gradient(150deg, var(--maroon), var(--maroon-deep));
+  border-radius: var(--radius); padding: clamp(1.6rem, 2.6vw, 2.6rem);
+  box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+}
+.event-feature::before { content: ""; position: absolute; right: -50px; top: -50px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(250,206,92,0.2), transparent 70%); }
+.event-feature .ev-label { color: var(--gold); position: relative; }
+.ev-theme { color: var(--white); font-family: var(--font-display); font-weight: 500; margin-top: 0.7rem; font-size: clamp(1.5rem, 2.7vw, 2.7rem); line-height: 1.26; position: relative; max-width: none; }
+
+/* ----------------------------------------------------------
+   6. KPI / COUNTERS
+   ---------------------------------------------------------- */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 1.6vw, 1.6rem); align-items: stretch; }
+.kpi {
+  height: 100%;                 /* uniform card height */
+  padding: clamp(1.3rem, 2vw, 2rem);
+  display: flex; flex-direction: column; gap: clamp(0.6rem, 1vw, 0.9rem);
+  position: relative; overflow: hidden;
+}
+.kpi-top { display: flex; align-items: center; gap: clamp(0.7rem, 1vw, 1rem); }
+.kpi-ic {
+  flex: none;
+  width: clamp(46px, 3.4vw, 58px); height: clamp(46px, 3.4vw, 58px);
+  border-radius: 15px; display: grid; place-items: center;
+  color: var(--maroon);
+  background: linear-gradient(150deg, rgba(250,206,92,0.30), rgba(249,232,113,0.16));
+  border: 1px solid rgba(128,0,0,0.12);
+}
+.kpi-ic svg { width: 56%; height: 56%; }
+.kpi .num { font-family: var(--font-display); font-size: clamp(2.4rem, 4vw, 3.7rem); color: var(--maroon); line-height: 1; }
+.kpi-label { color: var(--ink); font-weight: 600; font-size: clamp(0.92rem, 1.15vw, 1.18rem); line-height: 1.3; }
+.kpi-sub {
+  margin-top: auto; align-self: flex-start;
+  padding: 0.32rem 0.78rem; border-radius: 99px;
+  background: var(--cream); color: var(--maroon);
+  font-size: clamp(0.7rem, 0.85vw, 0.82rem); font-weight: 600; letter-spacing: 0.02em;
+  border: 1px solid var(--line);
+}
+
+/* ----------------------------------------------------------
+   6b. CATEGORY INTRO CARDS (Slide 3)
+   ---------------------------------------------------------- */
+.cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 2.2vw, 2rem); align-items: stretch; }
+.cat-card {
+  height: 100%;
+  padding: clamp(1.6rem, 2.6vw, 2.6rem);
+  display: flex; flex-direction: column; gap: clamp(0.7rem, 1.2vw, 1.1rem);
+  position: relative; overflow: hidden;
+  border-top: 5px solid var(--cat, var(--maroon));
+}
+.cat-top { display: flex; align-items: center; justify-content: space-between; }
+.cat-no { font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5rem); line-height: 1; color: var(--cat, var(--maroon)); }
+.cat-ic {
+  flex: none;
+  width: clamp(50px, 3.8vw, 64px); height: clamp(50px, 3.8vw, 64px);
+  border-radius: 16px; display: grid; place-items: center;
+  color: var(--cat, var(--maroon));
+  background: var(--cream); border: 1px solid var(--line);
+}
+.cat-ic svg { width: 55%; height: 55%; }
+.cat-key { color: var(--cat, var(--maroon)); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; font-size: clamp(0.8rem, 1vw, 0.95rem); }
+.cat-name { color: var(--ink); font-family: var(--font-display); font-weight: 500; font-size: clamp(1.3rem, 1.9vw, 1.9rem); line-height: 1.2; margin-top: 0.1rem; }
+
+/* ----------------------------------------------------------
+   7. DONUT (reusable)
+   ---------------------------------------------------------- */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.donut-wrap { display: grid; place-items: center; }
+.donut { transform: rotate(-90deg); }
+.donut-seg { transition: stroke-dashoffset 1.4s var(--ease); }
+.donut-center { font-family: var(--font-display); }
+.legend { display: flex; flex-direction: column; gap: clamp(0.9rem, 1.6vw, 1.4rem); }
+.legend-item { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; padding-bottom: clamp(0.9rem,1.6vw,1.4rem); border-bottom: 1px solid var(--line); }
+.legend-item:last-child { border-bottom: none; }
+.swatch { width: 16px; height: 16px; border-radius: 5px; }
+.legend-item .k { font-weight: 600; color: var(--ink); font-size: clamp(0.95rem,1.2vw,1.2rem); }
+.legend-item .d { color: var(--muted); font-size: clamp(0.78rem,0.95vw,0.95rem); }
+.legend-item .v { font-family: var(--font-display); font-size: clamp(1.4rem,2vw,2rem); color: var(--maroon); }
+.summary-pill {
+  margin-top: clamp(1rem,2vw,1.6rem); padding: 1rem 1.3rem; border-radius: 14px;
+  background: var(--cream); border: 1px solid var(--line); color: var(--ink);
+  font-size: clamp(0.85rem,1.05vw,1.05rem);
+}
+.summary-pill b { color: var(--maroon); }
+
+/* ----------------------------------------------------------
+   8. MALAYSIA CHOROPLETH MAP (Slide 5)
+   ---------------------------------------------------------- */
+.map-stage { display: flex; flex-direction: column; align-items: center; gap: clamp(0.6rem, 1.4vw, 1.2rem); width: 100%; }
+.map-holder { position: relative; width: 100%; display: flex; justify-content: center; }
+/* size by viewport so the map reliably fills the slide width */
+.cmap { width: min(90vw, 1900px); height: auto; display: block; margin: 0 auto; }
+/* map slide: pull the title up and let the map dominate */
+.slide.slide--top { justify-content: flex-start; padding-top: clamp(1.6rem, 3vw, 2.6rem); }
+.slide--top .section-head { margin-bottom: clamp(0.4rem, 1vw, 0.9rem); }
+.mstate {
+  stroke: rgba(255,255,255,0.9); stroke-width: 0.9; vector-effect: non-scaling-stroke;
+  transition: filter 0.3s var(--ease); cursor: default;
+}
+.mstate:hover { filter: brightness(0.92); stroke: var(--ink); stroke-width: 1.6; }
+/* external labels + leader lines */
+.mlead { fill: none; stroke: var(--maroon); stroke-width: 1.2; opacity: 0.38; vector-effect: non-scaling-stroke; }
+.mdot { stroke: #fff; stroke-width: 1.3; }
+.mlabel {
+  font-family: var(--font-body); font-size: 21px; font-weight: 500; fill: var(--ink);
+  dominant-baseline: central; pointer-events: none;
+}
+.mlabel .mnum { font-family: var(--font-display); font-weight: 600; fill: var(--maroon); font-size: 25px; }
+.map-tooltip {
+  position: absolute; pointer-events: none; opacity: 0; transform: translateY(6px);
+  background: var(--ink); color: var(--white); padding: 0.55rem 0.85rem; border-radius: 10px;
+  font-size: 0.9rem; font-weight: 500; box-shadow: var(--shadow-md); white-space: nowrap;
+  transition: opacity 0.2s ease, transform 0.2s ease; z-index: 30;
+}
+.map-tooltip.show { opacity: 1; transform: translateY(0); }
+.map-tooltip b { color: var(--gold); }
+.map-legend { display: flex; align-items: center; gap: clamp(1.2rem, 2.5vw, 2.4rem); flex-wrap: wrap; justify-content: center; }
+.map-legend .scale { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); font-size: clamp(0.78rem,0.95vw,0.92rem); }
+.scale-bar { height: 10px; width: clamp(120px, 14vw, 180px); border-radius: 99px; background: linear-gradient(90deg, #f3e1b0, var(--gold), var(--maroon)); }
+.bpf-note { display: flex; align-items: center; gap: 0.55rem; color: var(--muted); font-size: clamp(0.82rem,1vw,0.98rem); }
+.bpf-note .dot { width: 13px; height: 13px; border-radius: 50%; background: var(--maroon); }
+.bpf-note b { color: var(--maroon); }
+
+/* ----------------------------------------------------------
+   9. HORIZONTAL BAR CHART (Slide 5)
+   ---------------------------------------------------------- */
+.bars { display: flex; flex-direction: column; gap: clamp(1rem,2.2vw,1.9rem); margin-top: 0.5rem; }
+.bar-row { display: grid; grid-template-columns: minmax(240px, 22vw) 1fr auto; align-items: center; gap: 1.4rem; }
+.bar-row .label { font-weight: 500; color: var(--ink); font-size: clamp(0.95rem,1.25vw,1.3rem); }
+.bar-track { height: clamp(26px,3.2vw,42px); background: var(--cream); border-radius: 99px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill {
+  height: 100%; width: 0; border-radius: 99px;
+  background: linear-gradient(90deg, var(--maroon-deep), var(--maroon) 70%, #a83232);
+  transition: width 1.3s var(--ease);
+  position: relative;
+}
+.bar-fill::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 4px; background: var(--gold); opacity: 0.9; }
+.bar-row .val { font-family: var(--font-display); font-size: clamp(1.4rem,2vw,2rem); color: var(--maroon); min-width: 2ch; text-align: right; }
+
+/* ----------------------------------------------------------
+   10. TIMELINE (Slide 6)
+   ---------------------------------------------------------- */
+.timeline-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem,4vw,4rem); align-items: center; }
+.tl { position: relative; padding-left: 2.4rem; }
+.tl::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--gold), var(--line)); }
+.tl-item { position: relative; margin-bottom: 1.6rem; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot { position: absolute; left: -2.4rem; top: 4px; width: 20px; height: 20px; border-radius: 50%; background: var(--white); border: 4px solid var(--gold); box-shadow: 0 0 0 4px rgba(250,206,92,0.18); }
+.tl-date { color: var(--maroon); font-weight: 600; font-size: clamp(1rem,1.3vw,1.35rem); }
+.tl-time { color: var(--muted); font-size: clamp(0.85rem,1vw,1.05rem); margin-top: 0.15rem; }
+.tl-title { font-family: var(--font-display); font-size: clamp(1.3rem,1.9vw,2rem); color: var(--ink); margin-top: 0.5rem; }
+.tl-items { margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.tl-chip { display: flex; align-items: center; gap: 0.7rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 1rem; box-shadow: var(--shadow-sm); }
+.tl-chip .c-num { font-family: var(--font-display); color: var(--maroon); font-size: 1.5rem; min-width: 1.6ch; }
+.tl-chip .c-txt { color: var(--ink); font-size: clamp(0.85rem,1vw,1.05rem); }
+.callout {
+  background: linear-gradient(150deg, var(--maroon), var(--maroon-deep));
+  color: var(--cream); border-radius: var(--radius); padding: clamp(1.6rem,2.6vw,2.6rem);
+  box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+}
+.callout::before { content: ""; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(250,206,92,0.22), transparent 70%); }
+.callout .ic { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: rgba(250,206,92,0.16); border: 1px solid rgba(250,206,92,0.4); margin-bottom: 1.1rem; }
+.callout .ttl { color: var(--gold); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.78rem; }
+.callout p { margin-top: 0.6rem; font-size: clamp(1rem,1.35vw,1.4rem); line-height: 1.55; color: var(--white); font-weight: 300; }
+
+/* ----------------------------------------------------------
+   11. PUBLICATION CARDS (Slide 7)
+   ---------------------------------------------------------- */
+.pub-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem,2.6vw,2.4rem); align-items: stretch; }
+.pub-card { height: 100%; padding: clamp(1.8rem,2.6vw,2.6rem); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.pub-card .spine { position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: linear-gradient(var(--maroon), var(--maroon-deep)); }
+.pub-badge { align-self: flex-start; padding: 0.4rem 0.9rem; border-radius: 99px; background: var(--cream); color: var(--maroon); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.08em; }
+.pub-title { font-family: var(--font-display); font-size: clamp(1.3rem,1.85vw,1.95rem); color: var(--maroon); margin-top: 1.1rem; line-height: 1.12; }
+.pub-meta { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.pub-meta .m { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--line); padding-bottom: 0.45rem; }
+.pub-meta .m span:first-child { color: var(--muted); font-size: 0.9rem; }
+.pub-meta .m span:last-child { color: var(--ink); font-weight: 600; font-size: 0.95rem; }
+.pub-count { margin-top: auto; padding-top: 1.2rem; display: flex; align-items: baseline; gap: 0.6rem; }
+.pub-count .n { font-family: var(--font-display); font-size: clamp(2rem,3vw,2.8rem); color: var(--maroon); }
+.pub-count .t { color: var(--muted); font-weight: 500; }
+.pub-total {
+  background: linear-gradient(155deg, var(--maroon), var(--maroon-deep));
+  color: var(--cream); display: flex; flex-direction: column; justify-content: center;
+  border-radius: var(--radius); padding: clamp(1.4rem,2.2vw,2.2rem); box-shadow: var(--shadow-lg);
+  position: relative; overflow: hidden;
+}
+.pub-total::before { content:""; position:absolute; inset:0; background: radial-gradient(400px 300px at 110% -10%, rgba(250,206,92,0.18), transparent 60%); }
+.pub-total .n { font-family: var(--font-display); font-size: clamp(3.6rem,6vw,6rem); color: var(--white); line-height: 1; position: relative; }
+.pub-total .t { color: var(--gold); font-weight: 600; margin-top: 0.4rem; position: relative; letter-spacing: 0.04em; }
+.pub-summary { grid-column: 1 / -1; margin-top: clamp(1rem,2vw,1.6rem); color: var(--muted); font-size: clamp(0.92rem,1.15vw,1.18rem); max-width: 95ch; line-height: 1.6; }
+.pub-summary b { color: var(--maroon); }
+
+/* ----------------------------------------------------------
+   12. CHROME : progress, nav, footer, counter
+   ---------------------------------------------------------- */
+.deck-footer {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); bottom: clamp(1.1rem,2vw,1.8rem);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: clamp(0.68rem,0.85vw,0.85rem); color: var(--muted); z-index: 5;
+}
+.slide.hero .deck-footer { color: rgba(255,244,214,0.7); }
+.deck-footer .brand { font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.deck-footer .pg { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--maroon)); width: 0; z-index: 50; transition: width 0.5s var(--ease); }
+
+.nav { position: fixed; bottom: 1.4rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.55rem; z-index: 40; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(128,0,0,0.22); cursor: pointer; transition: all 0.4s var(--ease); border: none; }
+.dot.active { background: var(--maroon); width: 28px; border-radius: 99px; }
+
+.nav-arrows { position: fixed; bottom: 1.1rem; right: 1.4rem; display: flex; gap: 0.5rem; z-index: 40; }
+.nav-arrows button, .nav-arrows a { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--maroon); cursor: pointer; font-size: 1.1rem; display: grid; place-items: center; box-shadow: var(--shadow-sm); transition: all 0.3s var(--ease); text-decoration: none; }
+.nav-arrows button:hover, .nav-arrows a:hover { background: var(--maroon); color: var(--white); transform: translateY(-2px); }
+.hint { position: fixed; bottom: 1.25rem; left: 1.4rem; z-index: 40; color: var(--muted); font-size: 0.72rem; opacity: 0.7; }
+
+/* ----------------------------------------------------------
+   13. MOTION : reveal on active slide
+   ---------------------------------------------------------- */
+[data-reveal] { opacity: 0; transform: translateY(22px); }
+.slide.is-active [data-reveal] {
+  opacity: 1; transform: none;
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 110ms + 120ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  *, .slide, [data-reveal] { transition: none !important; animation: none !important; }
+}
+
+/* ============================================================
+   14. PENJURIAN DECK — shared component styles
+   ============================================================ */
+
+/* Section divider (maroon heading slide) */
+.divider-aud { color: var(--gold); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; font-size: clamp(0.72rem, 0.95vw, 0.92rem); }
+
+/* Workflow (Slide 8) — serpentine grid; down arrow joins step 3 → 4 */
+.wf-grid { display: grid; align-items: center; justify-items: center; column-gap: clamp(0.4rem, 1vw, 0.9rem); row-gap: clamp(0.5rem, 1.3vw, 1.1rem); max-width: 1280px; margin: 0 auto; }
+.wf-cell { width: 100%; display: flex; justify-content: center; }
+.wf-down { color: var(--maroon); font-size: clamp(1.5rem, 2.2vw, 2.2rem); line-height: 1; opacity: 0.7; }
+.wf-node {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow-sm); padding: clamp(1rem, 1.6vw, 1.6rem) clamp(1rem, 1.5vw, 1.5rem);
+  display: flex; flex-direction: column; gap: 0.5rem; min-width: clamp(120px, 11vw, 180px);
+  border-top: 4px solid var(--gold);
+}
+.wf-no { font-family: var(--font-display); font-size: clamp(1.3rem, 1.8vw, 1.9rem); color: var(--maroon); line-height: 1; }
+.wf-label { color: var(--ink); font-weight: 600; font-size: clamp(0.9rem, 1.1vw, 1.12rem); line-height: 1.25; }
+.wf-arrow { color: var(--maroon); font-size: clamp(1.3rem, 1.8vw, 1.8rem); opacity: 0.6; }
+.wf-note { margin-top: clamp(1.4rem, 2.6vw, 2.4rem); display: flex; align-items: center; gap: 0.9rem; color: var(--muted); font-size: clamp(0.95rem, 1.2vw, 1.25rem); }
+
+/* Scoring scale + calculation */
+.scale-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(0.7rem, 1.5vw, 1.4rem); }
+.scale-chip { background: var(--fill, var(--cream)); color: var(--fg, var(--ink)); border: 1px solid rgba(94,0,0,0.12); border-radius: 16px; box-shadow: var(--shadow-sm); padding: clamp(1.1rem, 2vw, 2rem); display: flex; flex-direction: column; gap: 0.35rem; }
+.sc-n { font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 3.2rem); line-height: 1; }
+.sc-l { font-weight: 600; font-size: clamp(0.82rem, 1.05vw, 1.1rem); }
+.formula { margin-top: clamp(1.4rem, 2.6vw, 2.4rem); display: flex; align-items: center; justify-content: center; gap: clamp(0.5rem, 1.3vw, 1.1rem); flex-wrap: wrap; }
+.fx-term { border-radius: 14px; padding: clamp(0.7rem, 1.2vw, 1.1rem) clamp(1rem, 1.8vw, 1.6rem); font-family: var(--font-display); font-size: clamp(1.05rem, 1.7vw, 1.7rem); font-weight: 600; border: 1px solid var(--line); background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+.fx-term small { font-family: var(--font-body); font-weight: 500; color: var(--muted); font-size: 0.6em; }
+.fx-score { border-top: 4px solid var(--gold); }
+.fx-weight { border-top: 4px solid #C77B30; }
+.fx-marks { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+.fx-op { font-family: var(--font-display); font-size: clamp(1.3rem, 2vw, 2rem); color: var(--maroon); }
+.fx-examples { margin-top: clamp(1.1rem, 2vw, 1.8rem); display: flex; flex-direction: column; gap: 0.6rem; align-items: center; }
+.fx-example { display: flex; align-items: center; gap: 1rem; background: var(--cream); border: 1px solid var(--line); border-radius: 12px; padding: 0.6rem 1.2rem; flex-wrap: wrap; }
+.fxe-crit { font-weight: 600; color: var(--maroon); }
+.fxe-calc { color: var(--ink); font-size: clamp(0.88rem, 1.1vw, 1.1rem); }
+.fxe-calc b { color: var(--maroon); font-family: var(--font-display); }
+
+/* Structure (Slide 9) */
+.struct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 2.6vw, 2.4rem); align-items: stretch; }
+.struct-card {
+  height: 100%; padding: clamp(1.8rem, 3vw, 3rem); position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 0.4rem; border-top: 6px solid var(--accent, var(--maroon));
+}
+.struct-pct { font-family: var(--font-display); font-size: clamp(3.4rem, 6vw, 6rem); color: var(--accent, var(--maroon)); line-height: 1; }
+.struct-pct span { font-size: 0.4em; }
+.struct-name { color: var(--ink); font-weight: 600; font-size: clamp(1.2rem, 1.7vw, 1.7rem); }
+.struct-sub { color: var(--muted); font-size: clamp(0.85rem, 1vw, 1.02rem); }
+.struct-total { margin-top: clamp(1.2rem, 2vw, 1.8rem); display: flex; align-items: baseline; gap: 0.8rem; justify-content: center; }
+.struct-total .n { font-family: var(--font-display); font-size: clamp(2.6rem, 4.5vw, 4.4rem); color: var(--maroon); line-height: 1; }
+.struct-total .t { color: var(--muted); font-weight: 600; font-size: clamp(1rem, 1.4vw, 1.4rem); letter-spacing: 0.04em; }
+.takeaway { margin-top: clamp(1rem, 2vw, 1.6rem); display: flex; align-items: center; gap: 0.9rem; color: var(--muted); font-size: clamp(0.95rem, 1.2vw, 1.2rem); max-width: 90ch; }
+
+/* Criterion cards (Slides 10 & 11) */
+.crit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.9rem, 1.6vw, 1.5rem); align-items: stretch; }
+.crit-grid.cols-3 { grid-template-columns: repeat(3, 1fr); max-width: 1300px; margin: 0 auto; }
+.crit-card {
+  height: 100%; padding: clamp(1.2rem, 1.8vw, 1.7rem); display: flex; flex-direction: column; gap: 0.55rem;
+  position: relative; overflow: hidden; border-left: 5px solid var(--accent, var(--maroon)); cursor: pointer;
+}
+.crit-card.open { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.crit-top { display: flex; align-items: center; justify-content: space-between; }
+.crit-marks { color: var(--maroon); font-size: clamp(0.85rem, 1vw, 1.02rem); }
+.crit-marks b { font-family: var(--font-display); font-size: clamp(1.6rem, 2.4vw, 2.3rem); margin-right: 0.25rem; }
+.crit-weight { background: var(--cream); color: var(--maroon); border: 1px solid var(--line); border-radius: 99px; padding: 0.2rem 0.6rem; font-size: 0.78rem; font-weight: 600; }
+.crit-name { color: var(--ink); font-family: var(--font-display); font-weight: 600; font-size: clamp(1.05rem, 1.4vw, 1.4rem); line-height: 1.18; }
+.crit-desc { color: var(--muted); font-size: clamp(0.82rem, 0.98vw, 0.98rem); line-height: 1.45; }
+
+/* Weight ranking (Slide 12) */
+.rank-list { display: flex; flex-direction: column; gap: clamp(0.55rem, 1.1vw, 0.95rem); }
+.rank-row { display: grid; grid-template-columns: minmax(220px, 22vw) 1fr auto; align-items: center; gap: 1.2rem; }
+.rank-name { color: var(--ink); font-weight: 500; font-size: clamp(0.92rem, 1.15vw, 1.18rem); }
+.rank-row.is-top .rank-name { font-weight: 600; color: var(--maroon); }
+.rank-track { height: clamp(20px, 2.6vw, 32px); background: var(--cream); border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+.rank-fill { height: 100%; width: 0; border-radius: 99px; background: var(--accent, var(--maroon)); transition: width 1.2s var(--ease); }
+.rank-val { font-family: var(--font-display); font-size: clamp(1.2rem, 1.7vw, 1.7rem); color: var(--maroon); min-width: 2ch; text-align: right; }
+
+/* Rubric dashboard (Slide 13) */
+.dash-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(0.8rem, 1.4vw, 1.4rem); align-items: stretch; }
+.dash-card { height: 100%; padding: clamp(1.2rem, 1.9vw, 1.9rem); display: flex; flex-direction: column; gap: 0.6rem; }
+.dash-ic {
+  width: clamp(42px, 3.2vw, 54px); height: clamp(42px, 3.2vw, 54px); border-radius: 14px; display: grid; place-items: center;
+  color: var(--maroon); background: linear-gradient(150deg, rgba(250,206,92,0.30), rgba(249,232,113,0.16)); border: 1px solid rgba(128,0,0,0.12);
+}
+.dash-ic svg { width: 56%; height: 56%; }
+.dash-num { font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 3.2rem); color: var(--maroon); line-height: 1; }
+.dash-label { color: var(--ink); font-weight: 600; font-size: clamp(0.82rem, 1vw, 1.05rem); line-height: 1.25; }
+.dash-msg { margin-top: clamp(1.2rem, 2.2vw, 2rem); display: flex; align-items: center; gap: 0.9rem; color: var(--muted); font-size: clamp(0.95rem, 1.25vw, 1.28rem); max-width: 96ch; }
+
+/* ============================================================
+   15. HUB (deck launcher / landing)
+   ============================================================ */
+body.hub { overflow: auto; height: auto; background:
+  radial-gradient(1100px 600px at 85% -10%, rgba(128,0,0,0.05), transparent 60%), var(--bg); }
+.hub-wrap { max-width: 1200px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem) 4rem; }
+.hub-head { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.hub-h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); color: var(--maroon); line-height: 1.05; }
+.hub-lead { color: var(--muted); font-size: clamp(1rem, 1.3vw, 1.25rem); max-width: 62ch; }
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: clamp(1.2rem, 2.4vw, 2rem); }
+.hub-card { display: flex; flex-direction: column; gap: 0.5rem; background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--maroon); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: clamp(1.6rem, 2.4vw, 2.2rem); text-decoration: none; color: var(--ink); transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+.hub-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.hub-eyebrow { color: var(--maroon); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.72rem; }
+.hub-title { font-family: var(--font-display); font-size: clamp(1.3rem, 1.9vw, 1.7rem); color: var(--maroon); line-height: 1.15; }
+.hub-sub { color: var(--muted); font-size: 0.98rem; flex: 1; }
+.hub-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--line); }
+.hub-count { color: var(--muted); font-size: 0.85rem; font-weight: 500; }
+.hub-go { color: var(--maroon); font-weight: 600; }
+.hub-credit { margin-top: clamp(2.5rem, 5vw, 4rem); color: var(--muted); font-size: 0.8rem; letter-spacing: 0.04em; }
+.hub-empty { color: var(--muted); }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RISE 2026 — Pusat Pembentangan</title>
+  <meta name="description" content="Pusat pembentangan RISE 2026 — pilih deck untuk dibentangkan." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="hub">
+  <div class="hub-wrap">
+    <header class="hub-head">
+      <h1 class="hub-h1">Pembentangan RISE</h1>
+      <span class="gold-rule"></span>
+    </header>
+    <main class="hub-grid" id="hubGrid"><!-- cards injected by hub.js --></main>
+    <footer class="hub-credit">RISE 2026 &middot; Bahagian Penguatkuasaan Farmasi &middot; Kementerian Kesihatan Malaysia</footer>
+  </div>
+
+  <!-- deck registry: each file registers itself into window.RISE_DECKS -->
+  <script src="assets/data/content.js"></script>
+  <script src="decks/penjurian-content.js"></script>
+  <script src="assets/js/hub.js"></script>
+</body>
+</html>

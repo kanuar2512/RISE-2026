@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taklimat Penjurian Poster R&D — RISE 2026</title>
+  <meta name="description" content="Taklimat proses penilaian poster R&D RISE 2026 untuk pembentang dan peserta." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
+  <!-- shared design system (single source of truth) -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <main id="deck">
+    <div class="stage" id="stage"><!-- slides injected by engine.js --></div>
+  </main>
+
+  <nav class="nav" id="nav" aria-label="Navigasi slaid"></nav>
+  <div class="nav-arrows">
+    <button id="prevBtn" aria-label="Slaid sebelum">&#8249;</button>
+    <button id="nextBtn" aria-label="Slaid seterusnya">&#8250;</button>
+    <button id="fsBtn" aria-label="Skrin penuh">&#9974;</button>
+  </div>
+  <div class="hint">&#8592; &#8594; / ruang &middot; F skrin penuh</div>
+
+  <!-- shared assets → deck content → shared components → shared engine -->
+  <script src="assets/data/logos.js"></script>
+  <script src="decks/penjurian-content.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/engine.js"></script>
+</body>
+</html>

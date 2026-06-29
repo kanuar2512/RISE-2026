@@ -1,0 +1,10 @@
+# OS / editor junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*~
+
+# Tooling caches (not part of the site)
+.claude/
+node_modules/
