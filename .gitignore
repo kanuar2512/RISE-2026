@@ -8,3 +8,10 @@ Desktop.ini
 # Tooling caches (not part of the site)
 .claude/
 node_modules/
+
+# temporary render artifacts (superseded by ruang-*/templat-*/sesi-*)
+assets/img/layout-1.png
+assets/img/layout-2.png
+assets/img/layout-4.png
+assets/img/layout-5.png
+assets/img/template-1.png

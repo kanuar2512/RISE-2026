@@ -344,7 +344,9 @@
     award: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="5"/><path d="M8.7 12.6 7 22l5-3 5 3-1.7-9.4"/></svg>`,
     poster: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>`,
     panel: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="9" r="2.4"/><circle cx="17" cy="9" r="2.4"/><circle cx="12" cy="7.5" r="2.6"/><path d="M3 19c0-2.4 2-4 4-4 1 0 1.9.3 2.6.9"/><path d="M21 19c0-2.4-2-4-4-4-1 0-1.9.3-2.6.9"/><path d="M7.5 19c0-2.7 2-4.5 4.5-4.5s4.5 1.8 4.5 4.5"/></svg>`,
-    flag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-1.5 3.5L16 11H5"/></svg>`
+    flag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-1.5 3.5L16 11H5"/></svg>`,
+    frame: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><rect x="8" y="8" width="8" height="8" rx="0.5"/></svg>`,
+    save: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>`
   };
   const picon = (n) => PICON[n] || ICONS[n] || "";
 
@@ -479,6 +481,69 @@
     return sectionHead(d.eyebrow, d.title) +
       el("div", "dash-grid", cards) +
       (d.message ? reveal(8, el("div", "dash-msg", el("span", "gold-rule") + el("span", "", d.message))) : "");
+  };
+
+  /* ============================================================
+     LAYOUT & TEMPLATE DECK COMPONENTS (shared library)
+     ============================================================ */
+
+  /* ---- Cover with full-bleed background image ---- */
+  C.imageCover = function (d) {
+    return `<img class="cover-bg" src="${d.bg}" alt="" aria-hidden="true">` +
+      `<div class="cover-scrim"></div>` +
+      el("div", "hero-cover cover-content",
+        reveal(0, el("span", "eyebrow", d.eyebrow || "")) +
+        reveal(1, el("h1", "display-xl", d.title)) +
+        (d.subtitle ? reveal(2, el("p", "slide-sub", d.subtitle)) : "")
+      );
+  };
+
+  /* ---- Figure cards (image + caption) ---- */
+  C.imageCards = function (d) {
+    const cards = d.items.map((it, i) =>
+      reveal(2 + i, el("figure", "img-card",
+        `<div class="img-wrap"><img src="${it.src}" alt="${it.title}"></div>` +
+        el("figcaption", "img-cap",
+          el("strong", "", it.title) + (it.caption ? el("span", "", it.caption) : ""))
+      ))
+    ).join("");
+    return sectionHead(d.eyebrow, d.title) +
+      (d.intro ? reveal(1, el("p", "slide-sub", d.intro)) : "") +
+      el("div", "img-grid cols-" + (d.cols || 2), cards);
+  };
+
+  /* ---- Split media (image + spec list) ---- */
+  C.splitMedia = function (d) {
+    const specs = (d.specs || []).map((s, i) =>
+      reveal(3 + i, el("div", "spec-item",
+        el("span", "spec-ic", picon(s.icon)) +
+        el("div", "", el("div", "spec-k", s.k) + el("div", "spec-v", s.v))))
+    ).join("");
+    return sectionHead(d.eyebrow, d.title) +
+      el("div", "split-media",
+        reveal(2, `<figure class="sm-fig"><img src="${d.image}" alt="${d.title}"></figure>`) +
+        el("div", "sm-body", specs)
+      );
+  };
+
+  /* ---- Spec list (label → value rows) ---- */
+  C.specList = function (d) {
+    const rows = d.items.map((it, i) =>
+      reveal(2 + i, el("div", "sl-row",
+        el("span", "sl-k", it.k) + el("span", "sl-v", it.v)))
+    ).join("");
+    return sectionHead(d.eyebrow, d.title) +
+      (d.intro ? reveal(1, el("p", "slide-sub", d.intro)) : "") +
+      el("div", "sl-list", rows);
+  };
+
+  /* ---- Chips + note ---- */
+  C.chipsNote = function (d) {
+    const chips = d.chips.map((c, i) => reveal(2 + i, el("span", "sec-chip", c))).join("");
+    return sectionHead(d.eyebrow, d.title) +
+      (d.intro ? reveal(1, el("p", "slide-sub", d.intro)) : "") +
+      el("div", "sec-chips", chips) +
+      (d.note ? reveal(2 + d.chips.length + 1, el("div", "wf-note", el("span", "gold-rule") + el("span", "", d.note))) : "");
   };
 
   /* expose */

@@ -508,6 +508,50 @@ p { line-height: 1.6; }
 .dash-msg { margin-top: clamp(1.2rem, 2.2vw, 2rem); display: flex; align-items: center; gap: 0.9rem; color: var(--muted); font-size: clamp(0.95rem, 1.25vw, 1.28rem); max-width: 96ch; }
 
 /* ============================================================
+   16. LAYOUT & TEMPLATE DECK
+   ============================================================ */
+/* image cover */
+.cover-img .cover-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.cover-img .cover-scrim { position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(120deg, rgba(94,0,0,0.86), rgba(94,0,0,0.55) 60%, rgba(26,26,26,0.55)); }
+.cover-img .cover-content { position: relative; z-index: 2; }
+.cover-img .display-xl, .cover-img .eyebrow { color: var(--white); }
+.cover-img .eyebrow { color: var(--gold); }
+.cover-img .slide-sub { color: rgba(255,244,214,0.9); margin: 0 auto; max-width: 52ch; }
+
+/* figure cards */
+.img-grid { display: grid; gap: clamp(1.2rem, 2.4vw, 2rem); align-items: stretch; }
+.img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.img-grid.cols-1 { grid-template-columns: 1fr; max-width: 1100px; margin: 0 auto; }
+.img-card { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+.img-wrap { background: var(--cream); display: flex; align-items: center; justify-content: center; }
+.img-card img { width: 100%; height: auto; display: block; }
+.img-cap { padding: clamp(0.9rem, 1.4vw, 1.3rem) clamp(1.1rem, 1.6vw, 1.5rem); border-top: 4px solid var(--gold); }
+.img-cap strong { display: block; font-family: var(--font-display); color: var(--maroon); font-size: clamp(1.05rem, 1.4vw, 1.4rem); }
+.img-cap span { color: var(--muted); font-size: clamp(0.85rem, 1vw, 1.02rem); }
+
+/* split media (template) */
+.split-media { display: grid; grid-template-columns: 0.8fr 1fr; gap: clamp(1.6rem, 3vw, 3rem); align-items: center; }
+.sm-fig { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-md); overflow: hidden; max-height: 64vh; display: flex; }
+.sm-fig img { width: 100%; height: auto; object-fit: contain; }
+.sm-body { display: flex; flex-direction: column; gap: clamp(0.7rem, 1.3vw, 1.1rem); }
+.spec-item { display: flex; align-items: center; gap: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(0.8rem, 1.3vw, 1.1rem) clamp(1rem, 1.5vw, 1.3rem); box-shadow: var(--shadow-sm); }
+.spec-ic { flex: none; width: clamp(40px, 3vw, 50px); height: clamp(40px, 3vw, 50px); border-radius: 12px; display: grid; place-items: center; color: var(--maroon); background: linear-gradient(150deg, rgba(250,206,92,0.30), rgba(249,232,113,0.16)); border: 1px solid rgba(128,0,0,0.12); }
+.spec-ic svg { width: 56%; height: 56%; }
+.spec-k { color: var(--maroon); font-weight: 600; font-size: clamp(0.72rem, 0.9vw, 0.85rem); letter-spacing: 0.06em; text-transform: uppercase; }
+.spec-v { color: var(--ink); font-size: clamp(0.98rem, 1.25vw, 1.3rem); font-weight: 500; line-height: 1.3; }
+
+/* spec list (font guide) */
+.sl-list { display: flex; flex-direction: column; gap: clamp(0.5rem, 1vw, 0.8rem); max-width: 1100px; }
+.sl-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; padding: clamp(0.7rem, 1.2vw, 1.05rem) clamp(1rem, 1.6vw, 1.5rem); background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--gold); border-radius: 12px; box-shadow: var(--shadow-sm); }
+.sl-k { color: var(--ink); font-weight: 500; font-size: clamp(0.95rem, 1.2vw, 1.25rem); }
+.sl-v { font-family: var(--font-display); color: var(--maroon); font-size: clamp(1.1rem, 1.5vw, 1.6rem); }
+
+/* section chips */
+.sec-chips { display: flex; flex-wrap: wrap; gap: clamp(0.6rem, 1.2vw, 1rem); }
+.sec-chip { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--maroon); border-radius: 12px; padding: clamp(0.8rem, 1.4vw, 1.2rem) clamp(1.1rem, 1.8vw, 1.6rem); font-family: var(--font-display); color: var(--maroon); font-size: clamp(1rem, 1.4vw, 1.45rem); box-shadow: var(--shadow-sm); }
+
+/* ============================================================
    15. HUB (deck launcher / landing)
    ============================================================ */
 body.hub { overflow: auto; height: auto; background:
