@@ -20,7 +20,7 @@
     const count = (d.slides || []).length;
     const card = document.createElement("a");
     card.className = "hub-card";
-    card.href = "present.html?deck=" + encodeURIComponent(id);
+    card.href = d.externalUrl || ("present.html?deck=" + encodeURIComponent(id));
     card.innerHTML =
       '<span class="hub-eyebrow">' + ((d.meta && d.meta.event) || "RISE 2026") + "</span>" +
       '<h2 class="hub-title">' + (d.title || id) + "</h2>" +

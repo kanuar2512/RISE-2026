@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-Undi RISE 2026 — Panduan Peserta</title>
+<style>
+:root{
+  --maroon-dark:#170808;
+  --maroon:#241010;
+  --maroon-mid:#341818;
+  --maroon-bright:#A52A2A;
+  --maroon-deep:#800000;
+  --gold:#FACE5C;
+  --gold-rgb:250,206,92;
+  --white:#f6efe4;
+  --grey:#c4b2a3;
+  --green:#5cd685;
+  --amber:#FACE5C;
+  --border:rgba(255,255,255,.09);
+  --mono:'Courier New',monospace;
+  --radius:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--maroon-dark);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* Progress bar */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--maroon-bright));width:0%;z-index:9999;transition:width .1s;}
+
+/* Sections */
+.section{min-height:100vh;padding:80px 24px;display:flex;align-items:center;}
+.section-inner{max-width:880px;margin:0 auto;width:100%;animation:fadeSlideUp .6s ease both;}
+.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;}
+h1.big{font-size:40px;font-weight:800;line-height:1.15;margin-bottom:16px;letter-spacing:-.5px;}
+h2.sec-title{font-size:28px;font-weight:800;margin-bottom:10px;letter-spacing:-.3px;}
+.sec-sub{color:var(--grey);font-size:15px;max-width:600px;margin-bottom:34px;}
+.lead{color:var(--grey);font-size:17px;max-width:620px;margin-bottom:30px;}
+
+/* Hero */
+.hero-logo-row{display:flex;align-items:center;gap:18px;margin-bottom:26px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--maroon-mid);border:1px solid var(--border);border-radius:30px;padding:7px 16px;font-size:12px;font-weight:700;color:var(--gold);}
+.hero-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:38px;}
+.hero-card{background:var(--maroon-mid);border:1px solid var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;text-align:left;}
+.hero-card:hover{border-color:rgba(var(--gold-rgb),.45);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.35);}
+.hero-card .hc-ico{font-size:26px;margin-bottom:12px;display:block;}
+.hero-card .hc-title{font-size:16px;font-weight:800;margin-bottom:6px;}
+.hero-card .hc-desc{font-size:13px;color:var(--grey);line-height:1.55;}
+.hero-card .hc-go{font-size:12px;font-weight:700;color:var(--gold);margin-top:12px;display:inline-block;}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;font-size:14px;font-weight:700;border-radius:var(--radius);border:none;cursor:pointer;transition:all .2s;font-family:inherit;}
+.btn-primary{background:var(--gold);color:#3a2400;}
+.btn-primary:hover{filter:brightness(1.08);}
+.btn-maroon{background:var(--maroon-deep);color:#fff;}
+.btn-maroon:hover{background:var(--maroon-bright);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--white);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.btn-sm{padding:8px 14px;font-size:12.5px;}
+.btn-lg{padding:14px 30px;font-size:15px;}
+
+/* Intro grid */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px;}
+.info-card{background:var(--maroon-mid);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.info-card h4{font-size:15px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.info-card p{font-size:13px;color:var(--grey);}
+.info-card .pill{display:inline-block;background:rgba(var(--gold-rgb),.12);color:var(--gold);font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;margin-top:10px;font-family:var(--mono);}
+
+/* Timeline */
+.timeline{position:relative;padding-left:30px;margin-top:24px;}
+.timeline::before{content:'';position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--gold),rgba(250,206,92,0));}
+.tl-item{position:relative;margin-bottom:24px;}
+.tl-item::before{content:'';position:absolute;left:-24px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(var(--gold-rgb),.18);}
+.tl-title{font-size:15px;font-weight:800;margin-bottom:3px;}
+.tl-desc{font-size:13px;color:var(--grey);}
+
+/* Tour section header */
+.tour-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px;}
+.tour-head .th-left{flex:1;min-width:240px;}
+.start-tour-btn{flex-shrink:0;}
+
+/* Mock UI frame */
+.mock-frame{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--maroon);box-shadow:0 18px 50px rgba(0,0,0,.4);}
+.mock-titlebar{background:rgba(255,255,255,.04);padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+.mock-dot{width:11px;height:11px;border-radius:50%;}
+.mock-url{font-size:11px;color:var(--grey);margin-left:10px;font-family:var(--mono);}
+.mock-body{height:470px;overflow-y:auto;position:relative;background:linear-gradient(135deg,#3a1414,#240d0d);}
+.mock-body::-webkit-scrollbar{width:6px;}
+.mock-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* Mock login card (replica of system) */
+.m-card{background:#fff;color:#24292f;border-radius:14px;max-width:430px;margin:24px auto;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.4);}
+.m-logos{display:flex;justify-content:center;align-items:center;gap:18px;padding:16px 0 10px;}
+.m-logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,#800000,#4a0000);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:10px;font-weight:800;text-align:center;line-height:1.1;padding:4px;}
+.m-divider{width:1px;height:40px;background:#ddd;}
+.m-banner{background:linear-gradient(135deg,#800000,#4a0000);padding:16px 22px;text-align:center;}
+.m-banner .ml{font-size:9.5px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:5px;}
+.m-banner .mt{font-size:12.5px;font-weight:800;color:#fff;line-height:1.4;}
+.m-bd{padding:22px 24px;}
+.m-sectitle{text-align:center;font-size:12px;color:#800000;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;padding-bottom:11px;border-bottom:2px solid #fff4d6;}
+.m-fg{margin-bottom:14px;}
+.m-fg label{display:block;font-size:11px;font-weight:700;color:#6e7781;text-transform:uppercase;margin-bottom:5px;}
+.m-ctrl{width:100%;padding:11px 13px;border:1.5px solid #d0d7de;border-radius:8px;font-size:14px;color:#24292f;background:#fff;}
+.m-otp{font-size:24px;font-weight:700;letter-spacing:9px;text-align:center;color:#800000;}
+.m-btn{width:100%;padding:12px;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;background:#800000;color:#fff;}
+.m-link{display:block;text-align:center;margin-top:9px;color:#6e7781;font-size:12px;background:none;border:none;width:100%;cursor:pointer;}
+.m-hint{text-align:center;font-size:12px;color:#888;margin-bottom:14px;}
+.m-hint strong{color:#800000;}
+.m-spin{width:40px;height:40px;border:4px solid #eee;border-top-color:#800000;border-radius:50%;animation:spin .7s linear infinite;margin:8px auto 12px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.m-foot{background:#f5f5f5;padding:10px;text-align:center;font-size:10px;color:#999;}
+.m-center{text-align:center;padding:10px 0;}
+
+/* Mock vote page */
+.mv-header{background:linear-gradient(135deg,#800000,#4a0000);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.mv-header .mvh-title{font-size:14px;font-weight:800;color:#fff;}
+.mv-header .mvh-title span{display:block;font-size:9.5px;color:var(--gold);font-weight:600;margin-top:2px;}
+.mv-user{display:flex;align-items:center;gap:8px;font-size:10.5px;color:#fff;}
+.mv-logout{background:rgba(255,255,255,.16);border:none;color:#fff;font-size:10.5px;padding:5px 10px;border-radius:6px;cursor:pointer;}
+.mv-body{padding:18px;}
+.mv-h2{font-size:15px;font-weight:800;color:var(--gold);margin-bottom:4px;}
+.mv-note{font-size:11.5px;color:var(--grey);margin-bottom:10px;}
+.mv-criteria{background:rgba(255,255,255,.04);border-left:3px solid var(--gold);border-radius:6px;padding:10px 14px;margin-bottom:16px;}
+.mv-criteria b{font-size:11.5px;color:var(--white);display:block;margin-bottom:5px;}
+.mv-criteria ul{margin:0;padding-left:16px;font-size:11px;color:var(--grey);line-height:1.7;}
+.mv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.proj-card{background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:10px;padding:14px;transition:border-color .2s,background .2s;position:relative;}
+.proj-card.selected{border-color:var(--gold);background:rgba(var(--gold-rgb),.1);}
+.proj-badge{display:inline-block;background:var(--maroon-deep);color:var(--gold);font-size:10px;font-weight:800;font-family:var(--mono);padding:3px 8px;border-radius:5px;margin-bottom:8px;}
+.proj-name{font-size:12.5px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.4;min-height:34px;}
+.proj-actions{display:flex;gap:6px;margin-bottom:12px;}
+.proj-actions .btn-outline{padding:6px 9px;font-size:10.5px;}
+.proj-chk{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--grey);padding-top:10px;border-top:1px solid var(--border);}
+.proj-chk input{width:15px;height:15px;accent-color:var(--gold);}
+.mv-selbar{position:sticky;bottom:0;background:var(--maroon-mid);border-top:1px solid var(--border);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.mv-counter{font-size:12px;color:var(--grey);}
+.mv-counter .cnt{font-weight:800;color:var(--gold);font-size:15px;}
+.mv-counter .cnt.complete{color:var(--green);}
+.mv-submit{background:var(--gold);color:#3a2400;border:none;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer;}
+.mv-submit:disabled{opacity:.45;cursor:not-allowed;}
+
+/* Tour ring + tooltip */
+.tour-ring{position:absolute;border:2.5px solid var(--gold);border-radius:8px;pointer-events:none;z-index:30;transition:all .28s cubic-bezier(.4,0,.2,1);box-shadow:0 0 0 3000px rgba(10,0,0,.62),0 0 18px rgba(var(--gold-rgb),.5);}
+.tour-ring.hidden{display:none;}
+.tour-tooltip{position:absolute;z-index:40;width:300px;background:var(--maroon-mid);border:1px solid rgba(var(--gold-rgb),.4);border-radius:12px;padding:16px;box-shadow:0 10px 36px rgba(0,0,0,.6);}
+.tour-tooltip.hidden{display:none;}
+.tt-step{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;}
+.tt-title{font-size:14.5px;font-weight:800;margin-bottom:7px;color:var(--white);}
+.tt-body{font-size:12.5px;color:var(--grey);line-height:1.6;}
+.tt-body em{color:#9d8d7e;font-size:11.5px;}
+.tt-arrow{position:absolute;width:0;height:0;}
+.tt-arrow.up{border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid rgba(var(--gold-rgb),.4);top:-7px;}
+.tt-arrow.down{border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid rgba(var(--gold-rgb),.4);bottom:-7px;}
+.tour-footer{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+.tour-dots{display:flex;gap:6px;align-items:center;}
+.tour-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:.2s;}
+.tour-dot.active{background:var(--gold);transform:scale(1.35);}
+.tt-nav{display:flex;gap:8px;}
+.tt-nav button{background:transparent;border:1px solid var(--border);color:var(--white);font-size:12px;font-weight:700;padding:6px 13px;border-radius:6px;cursor:pointer;transition:.15s;}
+.tt-nav button:hover{border-color:var(--gold);color:var(--gold);}
+.tt-nav button.prim{background:var(--gold);color:#3a2400;border-color:var(--gold);}
+
+/* Dot navigator */
+.dot-nav{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;z-index:500;}
+.dnav-dot{width:9px;height:9px;border-radius:50%;background:rgba(196,178,163,.3);border:1px solid rgba(196,178,163,.25);cursor:pointer;transition:.2s;position:relative;}
+.dnav-dot:hover,.dnav-dot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.5);}
+.dnav-dot::after{content:attr(data-label);position:absolute;right:20px;top:50%;transform:translateY(-50%);background:var(--maroon-mid);color:var(--white);font-size:11px;font-weight:600;white-space:nowrap;padding:4px 9px;border-radius:5px;border:1px solid var(--border);opacity:0;pointer-events:none;transition:opacity .15s;}
+.dnav-dot:hover::after{opacity:1;}
+
+/* Floating up button */
+#btn-top{position:fixed;right:20px;bottom:24px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:#3a2400;border:none;font-size:20px;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:500;box-shadow:0 6px 20px rgba(0,0,0,.4);}
+
+/* FAQ */
+.faq-item{background:var(--maroon-mid);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;}
+.faq-q{padding:16px 20px;font-size:14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.faq-q:hover{color:var(--gold);}
+.faq-q .chev{transition:transform .25s;color:var(--gold);flex-shrink:0;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 20px;}
+.faq-item.open .faq-a{max-height:300px;padding:0 20px 16px;}
+.faq-a p{font-size:13px;color:var(--grey);}
+
+/* Email modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,0,0,.82);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.email-modal{background:#fff;color:#333;border-radius:14px;max-width:520px;width:100%;overflow:hidden;box-shadow:0 16px 60px rgba(0,0,0,.5);max-height:90vh;overflow-y:auto;animation:fadeSlideUp .35s ease;}
+.em-close{position:absolute;top:14px;right:18px;background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;}
+
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+.callout{background:rgba(var(--gold-rgb),.1);border:1px solid rgba(var(--gold-rgb),.3);border-radius:10px;padding:16px 18px;margin-top:22px;font-size:13.5px;color:var(--white);display:flex;gap:12px;align-items:flex-start;}
+.callout .ci{font-size:20px;flex-shrink:0;}
+
+.divider-note{text-align:center;color:var(--grey);font-size:13px;margin:18px 0;display:flex;align-items:center;gap:14px;}
+.divider-note::before,.divider-note::after{content:'';flex:1;height:1px;background:var(--border);}
+
+@media(max-width:560px){
+  h1.big{font-size:30px;}
+  .section{padding:60px 18px;}
+  .dot-nav{display:none;}
+  .mv-grid{grid-template-columns:1fr;}
+  .tour-tooltip{width:240px;}
+}
+
+/* ===== TEMA CERAH: KRIM & MAROON ===== */
+body{background:#FAF0D2;color:#3D0000;}
+h1.big,h2.sec-title{color:#3D0000;font-family:Georgia,'Times New Roman',serif;}
+.eyebrow{color:#800000;}
+.lead,.sec-sub{color:#7B3030;}
+.hero-badge{background:#800000;color:#FAF0D2;border-color:rgba(128,0,0,.35);}
+.hero-card{background:#fff;border-color:rgba(128,0,0,.18);}
+.hero-card:hover{border-color:rgba(128,0,0,.55);box-shadow:0 12px 30px rgba(128,0,0,.1);}
+.hero-card .hc-desc{color:#7B3030;}
+.hero-card .hc-go{color:#800000;}
+.info-card{background:#fff;border-color:rgba(128,0,0,.18);}
+.info-card h4{color:#3D0000;}
+.info-card p{color:#7B3030;}
+.info-card .pill{background:rgba(128,0,0,.1);color:#800000;}
+.timeline::before{background:linear-gradient(to bottom,#800000,rgba(128,0,0,0));}
+.tl-item::before{background:#800000;box-shadow:0 0 0 4px rgba(128,0,0,.18);}
+.tl-title{color:#3D0000;}
+.tl-desc{color:#7B3030;}
+.btn-primary{background:#800000;color:#FAF0D2;}
+.btn-primary:hover{filter:brightness(1.1);}
+.btn-maroon{background:#800000;}
+.btn-outline{border-color:rgba(128,0,0,.35);color:#3D0000;}
+.btn-outline:hover{border-color:#800000;color:#800000;}
+.tour-tooltip{background:#fff;border-color:rgba(128,0,0,.3);color:#3D0000;}
+.tt-step{color:#800000;}
+.tt-title{color:#3D0000;}
+.tt-body{color:#7B3030;}
+.tt-body em{color:#9B6060;}
+.tt-arrow.up{border-bottom-color:rgba(128,0,0,.3);}
+.tt-arrow.down{border-top-color:rgba(128,0,0,.3);}
+.tour-footer{border-top-color:rgba(128,0,0,.15);}
+.tt-nav button{border-color:rgba(128,0,0,.25);color:#3D0000;}
+.tt-nav button:hover{border-color:#800000;color:#800000;}
+.tt-nav button.prim{background:#800000;color:#FAF0D2;border-color:#800000;}
+.tour-dot{background:rgba(128,0,0,.2);}
+.tour-dot.active{background:#800000;}
+.dnav-dot{background:rgba(128,0,0,.2);border-color:rgba(128,0,0,.2);}
+.dnav-dot:hover,.dnav-dot.active{background:#800000;border-color:#800000;}
+.dnav-dot::after{background:#fff;color:#3D0000;border-color:rgba(128,0,0,.2);}
+#btn-top{background:#800000;color:#FAF0D2;}
+#progress-bar{background:linear-gradient(90deg,#800000,#A52A2A);}
+.faq-item{background:#fff;border-color:rgba(128,0,0,.18);}
+.faq-q:hover{color:#800000;}
+.faq-q .chev{color:#800000;}
+.faq-a p{color:#7B3030;}
+.callout{background:rgba(128,0,0,.06);border-color:rgba(128,0,0,.25);color:#3D0000;}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ================= LANDING ================= -->
+<section class="section" id="sec-landing">
+  <div class="section-inner">
+    <div class="hero-logo-row">
+      <span class="hero-badge">🏛️ Penguatkuasaan Farmasi · KKM</span>
+      <span class="hero-badge">RISE 2026</span>
+    </div>
+    <div class="eyebrow">Panduan Penggunaan Sistem · Untuk Peserta / Pengundi</div>
+    <h1 class="big">Sistem e-Undi<br>Projek Inisiatif Penambahbaikan Kualiti</h1>
+    <p class="lead">
+      Panduan ringkas cara <strong style="color:var(--gold)">log masuk</strong> dan
+      <strong style="color:var(--gold)">mengundi</strong> projek Inisiatif Penambahbaikan Kualiti
+      Penguatkuasaan Farmasi terbaik dalam Simposium R&amp;D dan RISE 2026. Ikuti panduan animasi di bawah —
+      setiap langkah ditunjukkan pada paparan sebenar sistem.
+    </p>
+
+    <div class="hero-cards">
+<div class="hero-card" onclick="startLoginTour()">
+        <span class="hc-ico">🔐</span>
+        <div class="hc-title">Cara Log Masuk</div>
+        <div class="hc-desc">Log masuk automatik untuk akaun @moh.gov.my atau menggunakan kod OTP emel.</div>
+        <span class="hc-go">Lihat panduan →</span>
+      </div>
+      <div class="hero-card" onclick="startVoteTour()">
+        <span class="hc-ico">🗳️</span>
+        <div class="hc-title">Cara Mengundi</div>
+        <div class="hc-desc">Semak poster dan abstrak, pilih 3 projek terbaik, hantar undi.</div>
+        <span class="hc-go">Lihat panduan →</span>
+      </div>
+      <div class="hero-card" onclick="goTo('sec-tips')">
+        <span class="hc-ico">❓</span>
+        <div class="hc-title">Soalan Lazim</div>
+        <div class="hc-desc">OTP tidak sampai? Undi boleh diubah? Jawapan ringkas di sini.</div>
+        <span class="hc-go">Lihat Soalan Lazim →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= LOGIN TOUR ================= -->
+<section class="section" id="sec-login">
+  <div class="section-inner">
+    <div class="tour-head">
+      <div class="th-left">
+        <div class="eyebrow">Panduan 1</div>
+        <h2 class="sec-title">Cara Log Masuk</h2>
+        <p class="sec-sub" style="margin-bottom:0;">Ada dua cara masuk. <strong style="color:var(--gold)">Log masuk automatik</strong> berlaku
+        untuk akaun <span style="font-family:var(--mono)">@moh.gov.my</span> yang layak. Jika tidak, gunakan
+        <strong style="color:var(--gold)">log masuk OTP</strong> — ikuti panduan di bawah.</p>
+      </div>
+      <div class="start-tour-btn">
+        <button class="btn btn-primary" onclick="startLoginTour()">▶ Panduan Log Masuk</button>
+      </div>
+    </div>
+
+    <div style="position:relative;" id="login-wrap">
+      <div class="mock-frame">
+        <div class="mock-titlebar">
+          <div class="mock-dot" style="background:#ff5f57;"></div>
+          <div class="mock-dot" style="background:#ffbd2e;"></div>
+          <div class="mock-dot" style="background:#28c840;"></div>
+          <span class="mock-url">script.google.com/.../exec — Log Masuk</span>
+        </div>
+        <div class="mock-body" id="l-scroll">
+          <div class="tour-ring hidden" id="l-ring"></div>
+
+          <div class="m-card">
+            <div class="m-logos">
+              <div class="m-logo">RISE<br>2026</div>
+              <div class="m-divider"></div>
+              <div class="m-logo">50<br>THN</div>
+            </div>
+            <div class="m-banner">
+              <div class="ml">Sistem e-Undi Inisiatif Penambahbaikan Kualiti</div>
+              <div class="mt">Simposium R&amp;D dan Penguatkuasaan Farmasi (RISE) 2026</div>
+            </div>
+            <div class="m-bd">
+              <div class="m-sectitle">🔐 Log Masuk Sistem</div>
+
+              <div id="l-auto" class="m-center">
+                <div class="m-spin"></div>
+                <div style="color:#555;font-size:13px;">Mengesahkan akaun anda...</div>
+              </div>
+
+              <div id="l-email" class="m-fg" style="margin-top:4px;">
+                <label>Alamat Emel</label>
+                <input class="m-ctrl" value="ali.bin.ahmad@moh.gov.my" readonly>
+                <button class="m-btn" style="margin-top:14px;" id="l-emailbtn">Hantar Kod OTP →</button>
+                <button class="m-link">← Kembali</button>
+              </div>
+
+              <div id="l-otp" style="margin-top:4px;">
+                <div class="m-hint">Kod OTP telah dihantar ke<br><strong>ali.bin.ahmad@moh.gov.my</strong></div>
+                <div class="m-fg">
+                  <label>Kod OTP (6 digit)</label>
+                  <input class="m-ctrl m-otp" value="4 7 2 9 1 5" readonly>
+                </div>
+                <button class="m-btn" id="l-otpbtn">✅ Sahkan &amp; Log Masuk</button>
+                <button class="m-link" id="l-resend">🔄 Hantar semula OTP</button>
+              </div>
+
+              <div id="l-success" class="m-center">
+                <div style="font-size:46px;margin-bottom:8px;">✅</div>
+                <div style="font-size:15px;font-weight:800;color:#800000;margin-bottom:4px;">Log Masuk Berjaya!</div>
+                <div style="color:#555;font-size:12px;">Mengalihkan ke sistem...</div>
+              </div>
+            </div>
+            <div class="m-foot">Jawatankuasa RISE © 2026</div>
+          </div>
+
+          <div style="text-align:center;padding:6px 0 20px;">
+            <button class="btn btn-outline btn-sm" onclick="openEmailModal()">📧 Lihat contoh emel OTP</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- tooltip -->
+      <div class="tour-tooltip hidden" id="l-tooltip">
+        <div class="tt-arrow up" id="l-arrow"></div>
+        <div class="tt-step" id="l-step">Langkah 1 / 4</div>
+        <div class="tt-title" id="l-title"></div>
+        <div class="tt-body" id="l-body"></div>
+        <div class="tour-footer">
+          <div class="tour-dots" id="l-dots"></div>
+          <div class="tt-nav">
+            <button id="l-prev" onclick="lPrev()">← Balik</button>
+            <button class="prim" id="l-next" onclick="lNext()">Seterusnya →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VOTE TOUR ================= -->
+<section class="section" id="sec-vote">
+  <div class="section-inner">
+    <div class="tour-head">
+      <div class="th-left">
+        <div class="eyebrow">Panduan 2</div>
+        <h2 class="sec-title">Cara Mengundi</h2>
+        <p class="sec-sub" style="margin-bottom:0;">Selepas log masuk, borang pengundian dipaparkan.
+        Semak setiap projek, pilih <strong style="color:var(--gold)">tepat 3</strong>, dan hantar undi anda.</p>
+      </div>
+      <div class="start-tour-btn">
+        <button class="btn btn-primary" onclick="startVoteTour()">▶ Panduan Mengundi</button>
+      </div>
+    </div>
+
+    <div style="position:relative;" id="vote-wrap">
+      <div class="mock-frame">
+        <div class="mock-titlebar">
+          <div class="mock-dot" style="background:#ff5f57;"></div>
+          <div class="mock-dot" style="background:#ffbd2e;"></div>
+          <div class="mock-dot" style="background:#28c840;"></div>
+          <span class="mock-url">script.google.com/.../exec?token=… — Pengundian</span>
+        </div>
+        <div class="mock-body" id="v-scroll">
+          <div class="tour-ring hidden" id="v-ring"></div>
+
+          <div class="mv-header" id="v-el-header">
+            <div class="mvh-title">RISE 2026<span>Pengundian Inisiatif Penambahbaikan Kualiti Penguatkuasaan Farmasi</span></div>
+            <div class="mv-user">👤 ali.bin.ahmad@moh.gov.my <button class="mv-logout" id="v-el-logout">🚪 Log Keluar</button></div>
+          </div>
+
+          <div class="mv-body">
+            <div class="mv-h2">Pilih 3 Projek Inisiatif Penambahbaikan Kualiti Terbaik</div>
+            <div class="mv-note">Semak poster dan abstrak setiap projek sebelum membuat pilihan. Undi anda muktamad.</div>
+
+            <div class="mv-criteria" id="v-el-criteria">
+              <b>Pemilihan berdasarkan penilaian keseluruhan terhadap:</b>
+              <ul>
+                <li>Kualiti projek</li>
+                <li>Kreativiti dan inovasi</li>
+                <li>Impak serta nilai tambah kepada penguatkuasaan farmasi</li>
+                <li>Keberkesanan penyampaian dan daya tarikan pembentangan</li>
+              </ul>
+            </div>
+
+            <div class="mv-grid">
+              <div class="proj-card" id="v-el-card">
+                <div class="proj-badge">QII-01</div>
+                <div class="proj-name">Sistem Pemantauan Premis Berlesen Secara Digital</div>
+                <div class="proj-actions" id="v-el-actions">
+                  <button class="btn btn-outline" onclick="openPdfNote()">📄 Poster</button>
+                  <button class="btn btn-outline" onclick="openPdfNote()">📋 Abstrak</button>
+                </div>
+                <label class="proj-chk" id="v-el-chk"><input type="checkbox"> Pilih projek ini</label>
+              </div>
+              <div class="proj-card selected">
+                <div class="proj-badge">QII-02</div>
+                <div class="proj-name">Aplikasi Semakan Status Sampel Forensik Farmasi</div>
+                <div class="proj-actions">
+                  <button class="btn btn-outline" onclick="openPdfNote()">📄 Poster</button>
+                  <button class="btn btn-outline" onclick="openPdfNote()">📋 Abstrak</button>
+                </div>
+                <label class="proj-chk"><input type="checkbox" checked> Pilih projek ini</label>
+              </div>
+              <div class="proj-card">
+                <div class="proj-badge">QII-03</div>
+                <div class="proj-name">Pendigitalan Borang Pemeriksaan Penguatkuasaan</div>
+                <div class="proj-actions">
+                  <button class="btn btn-outline" onclick="openPdfNote()">📄 Poster</button>
+                  <button class="btn btn-outline" onclick="openPdfNote()">📋 Abstrak</button>
+                </div>
+                <label class="proj-chk"><input type="checkbox"> Pilih projek ini</label>
+              </div>
+              <div class="proj-card">
+                <div class="proj-badge">QII-04</div>
+                <div class="proj-name">Sistem Amaran Awal Produk Tidak Berdaftar</div>
+                <div class="proj-actions">
+                  <button class="btn btn-outline" onclick="openPdfNote()">📄 Poster</button>
+                  <button class="btn btn-outline" onclick="openPdfNote()">📋 Abstrak</button>
+                </div>
+                <label class="proj-chk"><input type="checkbox"> Pilih projek ini</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mv-selbar" id="v-el-selbar">
+            <div class="mv-counter">Dipilih: <span class="cnt">2</span> daripada <strong>3</strong> projek</div>
+            <button class="mv-submit" id="v-el-submit" disabled>✓ Hantar Undi</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tour-tooltip hidden" id="v-tooltip">
+        <div class="tt-arrow up" id="v-arrow"></div>
+        <div class="tt-step" id="v-step">Langkah 1 / 6</div>
+        <div class="tt-title" id="v-title"></div>
+        <div class="tt-body" id="v-body"></div>
+        <div class="tour-footer">
+          <div class="tour-dots" id="v-dots"></div>
+          <div class="tt-nav">
+            <button id="v-prev" onclick="vPrev()">← Balik</button>
+            <button class="prim" id="v-next" onclick="vNext()">Seterusnya →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="ci">⚠️</span>
+      <div>Butang <strong>"✓ Hantar Undi"</strong> hanya aktif apabila anda telah memilih
+      <strong>tepat 3 projek</strong>. Selepas klik, satu tetingkap pengesahan memaparkan pilihan anda sebelum penghantaran muktamad.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPS / FAQ ================= -->
+<section class="section" id="sec-tips">
+  <div class="section-inner">
+    <div class="eyebrow">Bantuan</div>
+    <h2 class="sec-title">Soalan Lazim dan Petua</h2>
+    <p class="sec-sub">Masalah biasa dan penyelesaian ringkas semasa log masuk dan mengundi.</p>
+
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Kod OTP saya tidak sampai? <span class="chev">▾</span></div><div class="faq-a"><p>Semak folder spam/sampah dalam emel anda. OTP sah selama 10 minit — jika tamat tempoh, klik "🔄 Hantar semula OTP". Jika emel anda tidak tersenarai sebagai pengundi layak, sistem tidak akan menghantar OTP; sila hubungi Urus Setia.</p></div></div>
+
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Emel saya bukan @moh.gov.my — boleh undi? <span class="chev">▾</span></div><div class="faq-a"><p>Tidak. Akses kepada sistem pengundian ini terhad kepada emel rasmi <strong>@moh.gov.my</strong> peserta persidangan sahaja. Jika anda peserta yang layak tetapi menghadapi masalah akses, sila hubungi Urus Setia.</p></div></div>
+
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Saya tersilap pilih — boleh ubah undi selepas hantar? <span class="chev">▾</span></div><div class="faq-a"><p>Tidak. Undi adalah muktamad selepas dihantar dan tidak boleh diubah. Sebab itu satu tetingkap pengesahan dipaparkan sebelum penghantaran — semak pilihan anda dengan teliti. Jika benar berlaku kesilapan, hubungi pentadbir sistem.</p></div></div>
+
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Butang "Hantar Undi" tidak boleh diklik? <span class="chev">▾</span></div><div class="faq-a"><p>Butang hanya aktif apabila anda memilih tepat 3 projek. Jika kurang atau lebih, ia kekal tidak aktif. Periksa penanda "Dipilih: X daripada 3" di bahagian bawah skrin.</p></div></div>
+
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Poster atau abstrak tidak dapat dibuka? <span class="chev">▾</span></div><div class="faq-a"><p>Dokumen dipaparkan dari Google Drive dalam tetingkap pratonton. Jika gagal dimuatkan, gunakan butang "⬇ Muat Turun PDF" dalam tetingkap tersebut untuk membuka fail secara langsung.</p></div></div>
+
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Saya menggunakan komputer yang dikongsi — bagaimana cara log keluar? <span class="chev">▾</span></div><div class="faq-a"><p>Klik "🚪 Log Keluar" di penjuru atas kanan. Sesi anda akan ditamatkan supaya pengguna seterusnya perlu log masuk semula. Penting pada peranti yang dikongsi.</p></div></div>
+
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Bilakah pengundian dibuka? <span class="chev">▾</span></div><div class="faq-a"><p>Tempoh pengundian ditetapkan oleh Urus Setia. Jika anda log masuk sebelum atau selepas tempoh, skrin akan memaklumkan bahawa sesi pengundian belum bermula atau telah tamat.</p></div></div>
+    </div>
+
+    <div class="callout" style="margin-top:30px;">
+      <span class="ci">📞</span>
+      <div><strong>Perlu bantuan lanjut?</strong> Hubungi Urus Setia / Jawatankuasa RISE 2026 untuk
+      pendaftaran pengundi, masalah log masuk, atau sebarang pertanyaan teknikal semasa sesi pengundian.</div>
+    </div>
+
+    <div style="text-align:center;margin-top:34px;">
+      <button class="btn btn-maroon btn-lg" onclick="goTo('sec-landing')">↑ Kembali ke Atas</button>
+    </div>
+  </div>
+</section>
+
+<!-- Dot navigator -->
+<div class="dot-nav" id="dot-nav">
+  <div class="dnav-dot" data-target="sec-landing" data-label="Utama" onclick="goTo('sec-landing')"></div>
+<div class="dnav-dot" data-target="sec-login" data-label="Log Masuk" onclick="goTo('sec-login')"></div>
+  <div class="dnav-dot" data-target="sec-vote" data-label="Mengundi" onclick="goTo('sec-vote')"></div>
+  <div class="dnav-dot" data-target="sec-tips" data-label="Soalan Lazim" onclick="goTo('sec-tips')"></div>
+</div>
+
+<button id="btn-top" onclick="goTo('sec-landing')">↑</button>
+
+<!-- Email modal -->
+<div class="modal-overlay" id="email-modal" onclick="if(event.target===this)closeEmailModal()">
+  <div class="email-modal">
+    <div style="position:relative;background:linear-gradient(135deg,#800000,#4a0000);padding:20px;text-align:center;">
+      <button class="em-close" onclick="closeEmailModal()">✕</button>
+      <h2 style="color:#fff;margin:0;font-size:14px;line-height:1.4;">Pengundian Projek Inisiatif Penambahbaikan Kualiti Penguatkuasaan Farmasi</h2>
+      <p style="color:#FACE5C;margin:4px 0 0;font-size:12px;">RISE 2026</p>
+    </div>
+    <div style="padding:24px;">
+      <p style="color:#888;font-size:11px;margin-bottom:4px;">Subjek emel:</p>
+      <p style="font-weight:700;font-size:13px;margin-bottom:18px;color:#333;">[RISE 2026] Kod OTP Log Masuk Sistem Pengundian</p>
+      <p style="color:#333;font-size:13px;">Assalamualaikum / Salam sejahtera <strong>Ali Bin Ahmad</strong>,</p>
+      <p style="color:#555;font-size:13px;margin-top:8px;">Kod OTP anda untuk log masuk ke sistem pengundian RISE 2026:</p>
+      <div style="text-align:center;margin:22px 0;">
+        <span style="font-size:32px;font-weight:700;letter-spacing:9px;color:#800000;background:#fffbeb;padding:14px 22px;border-radius:8px;display:inline-block;border:1px solid #FACE5C;">472915</span>
+      </div>
+      <p style="color:#888;font-size:12px;">⏱ Kod ini sah selama <strong>10 minit</strong> sahaja.</p>
+      <p style="color:#888;font-size:12px;margin-top:4px;">Jika anda tidak meminta kod ini, sila abaikan emel ini.</p>
+      <div style="background:#f5f5f5;padding:10px;text-align:center;font-size:10px;color:#999;margin:18px -24px -24px;">Jawatankuasa RISE © 2026</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ====================== Shared helpers ====================== */
+function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+
+function scrollToEl(scrollerId,el){
+  var s=document.getElementById(scrollerId);if(!s||!el)return;
+  var sR=s.getBoundingClientRect(),eR=el.getBoundingClientRect();
+  var relTop=eR.top-sR.top+s.scrollTop;
+  s.scrollTo({top:Math.max(0,relTop-60),behavior:'smooth'});
+}
+function showRing(ringId,wrapId,el){
+  var ring=document.getElementById(ringId),wrap=document.getElementById(wrapId);
+  if(!ring||!wrap||!el)return;
+  var wR=wrap.getBoundingClientRect(),eR=el.getBoundingClientRect(),pad=6;
+  ring.style.top=(eR.top-wR.top-pad)+'px';
+  ring.style.left=(eR.left-wR.left-pad)+'px';
+  ring.style.width=(eR.width+pad*2)+'px';
+  ring.style.height=(eR.height+pad*2)+'px';
+  ring.classList.remove('hidden');
+}
+function posTooltip(ttId,arrowId,wrapId,el){
+  var tt=document.getElementById(ttId),wrap=document.getElementById(wrapId);
+  if(!tt||!wrap||!el)return;
+  tt.classList.remove('hidden');
+  var ttW=tt.offsetWidth||300;
+  var wR=wrap.getBoundingClientRect(),eR=el.getBoundingClientRect();
+  var left=eR.left-wR.left+eR.width/2-ttW/2;
+  left=Math.max(8,Math.min(left,wR.width-ttW-8));
+  tt.style.left=left+'px';
+  var ttH=tt.offsetHeight||170;
+  var space=eR.top-wR.top;
+  var arr=document.getElementById(arrowId);
+  if(space>ttH+24){
+    tt.style.top=(eR.top-wR.top-ttH-14)+'px';
+    arr.className='tt-arrow down';arr.style.bottom='-7px';arr.style.top='';
+  }else{
+    tt.style.top=(eR.top-wR.top+eR.height+14)+'px';
+    arr.className='tt-arrow up';arr.style.top='-7px';arr.style.bottom='';
+  }
+  arr.style.left=Math.max(10,(eR.left-wR.left+eR.width/2-left-7))+'px';
+}
+function hideOverlay(p){
+  var t=document.getElementById(p+'-tooltip');if(t)t.classList.add('hidden');
+  var r=document.getElementById(p+'-ring');if(r)r.classList.add('hidden');
+}
+function clearHL(scrollerId){
+  var s=document.getElementById(scrollerId);if(!s)return;
+  s.querySelectorAll('.hl').forEach(function(e){e.classList.remove('hl');});
+}
+function buildDots(cId,count){
+  var c=document.getElementById(cId);if(!c)return;c.innerHTML='';
+  for(var i=0;i<count;i++){var d=document.createElement('div');d.className='tour-dot';c.appendChild(d);}
+}
+function updateDots(cId,cur){
+  document.querySelectorAll('#'+cId+' .tour-dot').forEach(function(d,i){d.classList.toggle('active',i===cur);});
+}
+
+/* ====================== LOGIN TOUR ====================== */
+var lStep=-1;
+var LSTEPS=[
+  {id:'l-auto',title:'Log masuk automatik · Auto-login',
+   body:'Apabila sistem dibuka, ia cuba mengesahkan akaun anda secara automatik. Jika anda menggunakan akaun rasmi <b>@moh.gov.my</b> yang layak, anda terus masuk tanpa OTP.<br><br><em>The system first tries to log you in automatically.</em>'},
+  {id:'l-email',title:'Masukkan emel anda · Enter email',
+   body:'Jika auto-login tidak berlaku, masukkan <b>alamat emel berdaftar</b> anda, kemudian klik <b>"Hantar Kod OTP"</b>. OTP hanya dihantar kepada pengundi yang layak.<br><br><em>Enter your registered email to receive a code.</em>'},
+  {id:'l-otp',title:'Masukkan kod OTP · Enter OTP',
+   body:'Semak emel anda untuk kod <b>6 digit</b>. Masukkannya di sini dan klik <b>"Sahkan &amp; Log Masuk"</b>. Kod sah selama <b>10 minit</b>.<br><br><em>Type the 6-digit code from your email.</em>'},
+  {id:'l-success',title:'Log masuk berjaya · Success',
+   body:'Setelah disahkan, anda dialihkan terus ke borang pengundian. Anda kini bersedia untuk mengundi!<br><br><em>You are now logged in and ready to vote.</em>',isLast:true}
+];
+function renderL(){
+  var s=LSTEPS[lStep];var el=document.getElementById(s.id);if(!el)return;
+  scrollToEl('l-scroll',el);
+  setTimeout(function(){
+    showRing('l-ring','login-wrap',el);
+    document.getElementById('l-step').textContent='Langkah '+(lStep+1)+' / '+LSTEPS.length;
+    document.getElementById('l-title').textContent=s.title;
+    document.getElementById('l-body').innerHTML=s.body;
+    document.getElementById('l-prev').style.display=lStep===0?'none':'';
+    document.getElementById('l-next').textContent=s.isLast?'Selesai ✓':'Seterusnya →';
+    posTooltip('l-tooltip','l-arrow','login-wrap',el);
+    updateDots('l-dots',lStep);
+  },360);
+}
+function lNext(){if(lStep<LSTEPS.length-1){lStep++;renderL();}else{hideOverlay('l');lStep=-1;}}
+function lPrev(){if(lStep>0){lStep--;renderL();}}
+function startLoginTour(){
+  goTo('sec-login');
+  setTimeout(function(){lStep=0;buildDots('l-dots',LSTEPS.length);renderL();},650);
+}
+
+/* ====================== VOTE TOUR ====================== */
+var vStep=-1;
+var VSTEPS=[
+  {id:'v-el-criteria',title:'Kriteria penilaian · Criteria',
+   body:'Buat pilihan berdasarkan <b>kualiti, kreativiti dan inovasi, impak</b> kepada penguatkuasaan farmasi, serta <b>keberkesanan penyampaian</b>.<br><br><em>Judge each project against these four criteria.</em>'},
+  {id:'v-el-actions',title:'Semak poster dan abstrak · Review documents',
+   body:'Klik <b>📄 Poster</b> atau <b>📋 Abstrak</b> untuk membuka dokumen projek dalam tetingkap pratonton sebelum menilai.<br><br><em>Open the poster/abstract to review before deciding.</em>'},
+  {id:'v-el-chk',title:'Tanda projek pilihan · Select project',
+   body:'Klik pada kad atau kotak semak untuk memilih projek. Kad yang dipilih akan bertukar warna (jingga emas).<br><br><em>Tick the checkbox to select a project.</em>'},
+  {id:'v-el-card',title:'Pilih tepat 3 projek · Pick exactly 3',
+   body:'Anda mesti memilih <b>tepat 3 projek</b>. Cuba pilih yang keempat? Sistem akan minta anda nyahpilih satu dahulu.<br><br><em>You can only select 3 projects in total.</em>'},
+  {id:'v-el-selbar',title:'Penanda pilihan · Selection counter',
+   body:'Penanda "<b>Dipilih: X daripada 3</b>" menunjukkan berapa banyak telah dipilih. Butang hantar aktif hanya apabila cukup 3.<br><br><em>This counter tracks your selections.</em>'},
+  {id:'v-el-submit',title:'Hantar undi · Submit vote',
+   body:'Apabila 3 projek dipilih, klik <b>"✓ Hantar Undi"</b>. Tetingkap pengesahan memaparkan pilihan anda — sahkan untuk menghantar. <b>Undi muktamad &amp; tidak boleh diubah.</b><br><br><em>Confirm to submit — your vote is final.</em>',isLast:true}
+];
+function renderV(){
+  var s=VSTEPS[vStep];var el=document.getElementById(s.id);if(!el)return;
+  scrollToEl('v-scroll',el);
+  setTimeout(function(){
+    showRing('v-ring','vote-wrap',el);
+    document.getElementById('v-step').textContent='Langkah '+(vStep+1)+' / '+VSTEPS.length;
+    document.getElementById('v-title').textContent=s.title;
+    document.getElementById('v-body').innerHTML=s.body;
+    document.getElementById('v-prev').style.display=vStep===0?'none':'';
+    document.getElementById('v-next').textContent=s.isLast?'Selesai ✓':'Seterusnya →';
+    posTooltip('v-tooltip','v-arrow','vote-wrap',el);
+    updateDots('v-dots',vStep);
+  },360);
+}
+function vNext(){if(vStep<VSTEPS.length-1){vStep++;renderV();}else{hideOverlay('v');vStep=-1;}}
+function vPrev(){if(vStep>0){vStep--;renderV();}}
+function startVoteTour(){
+  goTo('sec-vote');
+  setTimeout(function(){vStep=0;buildDots('v-dots',VSTEPS.length);renderV();},650);
+}
+
+/* ====================== Reposition on inner scroll ====================== */
+['l-scroll','v-scroll'].forEach(function(id){
+  var el=document.getElementById(id);if(!el)return;
+  el.addEventListener('scroll',function(){
+    if(id==='l-scroll'&&lStep>=0){var t=document.getElementById(LSTEPS[lStep].id);if(t){showRing('l-ring','login-wrap',t);posTooltip('l-tooltip','l-arrow','login-wrap',t);}}
+    if(id==='v-scroll'&&vStep>=0){var t2=document.getElementById(VSTEPS[vStep].id);if(t2){showRing('v-ring','vote-wrap',t2);posTooltip('v-tooltip','v-arrow','vote-wrap',t2);}}
+  });
+});
+
+/* ====================== Mock vote interactivity ====================== */
+function initVoteMock(){
+  var boxes=document.querySelectorAll('#v-scroll .proj-chk input[type="checkbox"]');
+  var cntEl=document.querySelector('.mv-counter .cnt');
+  var submitBtn=document.getElementById('v-el-submit');
+  function update(){
+    var n=0;
+    boxes.forEach(function(b){if(b.checked)n++;});
+    if(cntEl)cntEl.textContent=n;
+    if(cntEl)cntEl.className='cnt'+(n===3?' complete':'');
+    if(submitBtn)submitBtn.disabled=(n!==3);
+  }
+  boxes.forEach(function(box){
+    box.addEventListener('change',function(){
+      var n=document.querySelectorAll('#v-scroll .proj-chk input[type="checkbox"]:checked').length;
+      if(this.checked&&n>3){this.checked=false;return;}
+      var card=this.closest('.proj-card');
+      if(card)card.classList.toggle('selected',this.checked);
+      update();
+    });
+  });
+  update();
+}
+initVoteMock();
+
+/* ====================== Email modal & misc ====================== */
+function openEmailModal(){document.getElementById('email-modal').classList.add('open');}
+function closeEmailModal(){document.getElementById('email-modal').classList.remove('open');}
+function openPdfNote(){alert('Dalam sistem sebenar, dokumen poster/abstrak akan dibuka dalam tetingkap pratonton PDF. (Paparan demo)');}
+function toggleFaq(q){q.parentElement.classList.toggle('open');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeEmailModal();});
+
+/* ====================== Progress + dot nav + auto-dismiss ====================== */
+(function(){
+  var sections=['sec-landing','sec-login','sec-vote','sec-tips'];
+  var btnTop=document.getElementById('btn-top');
+  var dots=document.querySelectorAll('.dnav-dot');
+  var _prev=null;
+  function getActive(){
+    var mid=window.innerHeight/2,best=sections[0],bd=Infinity;
+    sections.forEach(function(id){var el=document.getElementById(id);if(!el)return;
+      var r=el.getBoundingClientRect();var d=Math.abs(r.top+r.height/2-mid);
+      if(d<bd){bd=d;best=id;}});
+    return best;
+  }
+  function update(){
+    var d=document.documentElement;
+    var pct=d.scrollHeight>d.clientHeight?(d.scrollTop/(d.scrollHeight-d.clientHeight))*100:0;
+    document.getElementById('progress-bar').style.width=pct+'%';
+    btnTop.style.display=window.scrollY>250?'flex':'none';
+    var active=getActive();
+    dots.forEach(function(dt){dt.classList.toggle('active',dt.dataset.target===active);});
+    if(active===_prev)return;_prev=active;
+    if(lStep>=0){if(active!=='sec-login'){hideOverlay('l');}else{setTimeout(renderL,150);}}
+    if(vStep>=0){if(active!=='sec-vote'){hideOverlay('v');}else{setTimeout(renderV,150);}}
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',function(){if(lStep>=0)renderL();if(vStep>=0)renderV();});
+  update();
+})();
+</script>
+</body>
+</html>
