@@ -992,3 +992,57 @@ body.hub { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; b
   font-size: 13px;
   color: var(--text-light);
 }
+
+/* ============================================================
+   SECTION 20 — HUB SECTIONED LAYOUT
+   ============================================================ */
+
+/* Replace flat hub-grid with stacked sections container */
+.hub-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.hub-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Section heading row */
+.hub-section-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hub-section-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.hub-section-label {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  color: var(--maroon);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Card grid within each section — same as old hub-grid */
+.hub-section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(1.2rem, 2.4vw, 2rem);
+}
+
+/* Responsive: single column on small screens */
+@media (max-width: 480px) {
+  .hub-section-grid {
+    grid-template-columns: 1fr;
+  }
+}

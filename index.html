@@ -18,7 +18,7 @@
       <h1 class="hub-h1">Pembentangan RISE</h1>
       <span class="gold-rule"></span>
     </header>
-    <main class="hub-grid" id="hubGrid"><!-- cards injected by hub.js --></main>
+    <main class="hub-container" id="hubGrid"><!-- sections injected by hub.js --></main>
     <footer class="hub-credit">RISE 2026 &middot; Bahagian Penguatkuasaan Farmasi &middot; Kementerian Kesihatan Malaysia</footer>
   </div>
 
@@ -30,6 +30,24 @@
   <script src="decks/research-content.js"></script>
   <script src="decks/eundi-content.js"></script>
   <script src="decks/digital-content.js"></script>
+
+  <!-- hub section order & groupings -->
+  <script>
+    window.RISE_HUB_SECTIONS = [
+      {
+        heading: "Overview",
+        decks: ["introduction", "digital", "layout"]
+      },
+      {
+        heading: "R&D",
+        decks: ["research", "penjurian-rnd", "taklimat-juri"]
+      },
+      {
+        heading: "Projek Inisiatif Penambahbaikan Kualiti",
+        decks: ["eundi"]
+      }
+    ];
+  </script>
   <script src="assets/js/hub.js"></script>
 </body>
 </html>
