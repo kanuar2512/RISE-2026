@@ -636,6 +636,7 @@ h2.slide-h2{
 
 <!-- Navigation -->
 <div id="nav">
+  <button class="nav-btn" id="btn-home" onclick="goHome()" title="Kembali ke Laman Utama">⌂</button>
   <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>‹</button>
   <div class="nav-dots" id="nav-dots"></div>
   <span id="slide-counter">1 / 9</span>
@@ -670,6 +671,7 @@ function goTo(n) {
 
 function nextSlide() { goTo(current + 1); }
 function prevSlide() { goTo(current - 1); }
+function goHome() { window.location.href = 'index.html'; }
 
 function updateNav() {
   document.getElementById('slide-counter').textContent = current + ' / ' + TOTAL;

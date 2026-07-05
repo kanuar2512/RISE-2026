@@ -21,7 +21,6 @@
     const card = document.createElement("a");
     card.className = "hub-card";
     card.href = d.externalUrl || ("present.html?deck=" + encodeURIComponent(id));
-    if (d.externalUrl) { card.target = "_blank"; card.rel = "noopener"; }
     const countLabel = d.externalUrl ? "Panduan Interaktif" : (count + " slaid");
     card.innerHTML =
       '<span class="hub-eyebrow">' + ((d.meta && d.meta.event) || "RISE 2026") + "</span>" +
