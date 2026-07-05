@@ -196,7 +196,7 @@ Object.assign(window.RISE, {
     ],
     total: { value: 40, label: "Jumlah Abstrak Diterbitkan" },
     summary: "Kesemua <b>40 abstrak</b> akan diterbitkan dalam dua penerbitan rasmi RISE 2026 sebagai platform perkongsian ilmu, pengiktirafan akademik dan rujukan dalam bidang penguatkuasaan farmasi."
-  }
+  },
 
   /* ---- SLIDE: KPK Visit intro ---- */
   kpkVisit: {
