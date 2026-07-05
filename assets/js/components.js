@@ -852,6 +852,30 @@
       );
   };
 
+
+  /* ============================================================
+     JURI PANEL — Senarai panel penilai dengan kad biografi
+     ============================================================ */
+  C.juriPanel = function (d) {
+    const cards = (d.judges || []).map((j, i) =>
+      reveal(2 + i,
+        el("article", "card juri-card",
+          el("div", "juri-num", String(i + 1).padStart(2, "0")) +
+          el("div", "juri-body",
+            (j.honorific ? el("div", "juri-honorific", j.honorific) : "") +
+            el("div", "juri-name", j.name) +
+            el("div", "juri-post", j.post) +
+            el("div", "juri-org", j.org)
+          )
+        )
+      )
+    ).join("");
+
+    return sectionHead(d.eyebrow, d.title) +
+      (d.subtitle ? reveal(2, el("p", "slide-sub", d.subtitle)) : "") +
+      el("div", "juri-grid", cards);
+  };
+
   /* expose */
   RISE.components = C;
 })(window.RISE = window.RISE || {});
