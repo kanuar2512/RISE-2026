@@ -734,3 +734,198 @@ body.hub { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; b
 .dig-summary b { color: var(--maroon); }
 .dig-restricted { display: flex; align-items: flex-start; gap: 0.8rem; padding: clamp(0.9rem,1.2vw,1.2rem) clamp(1.2rem,1.8vw,1.8rem); background: rgba(128,0,0,.05); border: 1px dashed var(--maroon); border-radius: var(--radius); margin-top: 1.2rem; font-size: clamp(0.84rem,0.96vw,0.98rem); color: var(--muted); line-height: 1.6; }
 .dig-restricted strong { color: var(--maroon); }
+
+/* ============================================================
+   SECTION 18 — KPK VISIT SLIDES
+   ============================================================ */
+
+/* --- kpkVisit: intro --- */
+.kpk-context {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--maroon-bg);
+  border: 1px solid var(--maroon-border);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--maroon);
+  margin-bottom: 20px;
+}
+
+.kpk-preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.kpk-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 28px;
+}
+
+.kpk-pre-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kpk-code {
+  background: var(--maroon);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.kpk-cat-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--maroon);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpk-state-tag {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--text-mid);
+  margin-top: 2px;
+}
+
+.kpk-pre-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--maroon-dark);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* --- kpkProject: detail --- */
+.kpk-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+.kpk-left,
+.kpk-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kpk-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kpk-badge {
+  background: var(--maroon);
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.kpk-cat-pill {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--maroon);
+  background: var(--maroon-bg);
+  border: 1px solid var(--maroon-border);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.kpk-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--maroon-dark);
+  line-height: 1.4;
+}
+
+.kpk-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kpk-state {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--maroon);
+}
+
+.kpk-affil,
+.kpk-authors {
+  font-size: 12px;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+.kpk-box-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--maroon);
+  margin-bottom: 6px;
+}
+
+.kpk-obj-box,
+.kpk-conc-box {
+  background: var(--maroon-bg);
+  border-left: 3px solid var(--maroon);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+}
+
+.kpk-obj-text,
+.kpk-conc-text {
+  font-size: 13px;
+  color: var(--text-dark);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.kpk-findings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kpk-finding {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.kpk-find-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--maroon);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.kpk-find-text {
+  font-size: 14px;
+  color: var(--text-dark);
+  line-height: 1.55;
+}

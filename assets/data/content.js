@@ -197,6 +197,58 @@ Object.assign(window.RISE, {
     total: { value: 40, label: "Jumlah Abstrak Diterbitkan" },
     summary: "Kesemua <b>40 abstrak</b> akan diterbitkan dalam dua penerbitan rasmi RISE 2026 sebagai platform perkongsian ilmu, pengiktirafan akademik dan rujukan dalam bidang penguatkuasaan farmasi."
   }
+
+  /* ---- SLIDE: KPK Visit intro ---- */
+  kpkVisit: {
+    eyebrow: "Lawatan KPK",
+    title: "Lawatan ke Ruang Simposium",
+    subtitle: "Dua projek berikut dipilih untuk ditonjolkan semasa lawatan Yang Berhormat Ketua Pengarah Kesihatan Malaysia ke ruang pameran poster RISE 2026.",
+    context: "28 Julai 2026 \u00b7 Semasa Majlis Pembukaan",
+    projects: [
+      { code: "R01", category: "Kajian R&D", title: "A Qualitative Study Exploring and Understanding Non-Compliance Towards Pharmacy Law Among Repeat Offenders in Sabah, Malaysia", state: "Sabah" },
+      { code: "Q01", category: "Projek QII", title: "MEDISHRX 2.0", state: "Pulau Pinang" }
+    ]
+  },
+
+  /* ---- SLIDE: R01 ---- */
+  kpkR01: {
+    eyebrow: "Kajian R&D Terpilih \u00b7 R01",
+    code: "R01",
+    category: "Poster Kajian Penyelidikan dan Pembangunan (R&D)",
+    title: "A Qualitative Study Exploring and Understanding Non-Compliance Towards Pharmacy Law Among Repeat Offenders in Sabah, Malaysia",
+    authors: "Hii Lu Yien, Fashihatul Aini Affandi, Loh Tan Yin et al.",
+    state: "Sabah",
+    affiliation: "Cawangan Penguatkuasaan Farmasi, Jabatan Kesihatan Negeri Sabah",
+    objective: "Meneroka fenomena ketidakpatuhan berulang terhadap undang-undang farmasi \u2014 punca pesalah berulang di Sabah terus menjual ubat tidak berdaftar dan kosmetik tidak dinotifikasi.",
+    findings: [
+      "Keperluan ekonomi untuk kelangsungan hidup",
+      "Obligasi komuniti \u2014 ubat mampu milik di kawasan luar bandar",
+      "Kekaburan rantaian bekalan \u2014 pembekal yang mengelirukan",
+      "Normalisasi peraturan \u2014 kekeliruan dan impuniti pesaing tanpa lesen"
+    ],
+    conclusion: "Strategi pelbagai pendekatan: penguatkuasaan progresif, pendidikan disasarkan, dan regulasi pembekal hulu disyorkan untuk meningkatkan pematuhan mampan."
+  },
+
+  /* ---- SLIDE: Q01 ---- */
+  kpkQ01: {
+    eyebrow: "Projek QII Terpilih \u00b7 Q01",
+    code: "Q01",
+    category: "Projek Inisiatif Penambahbaikan Kualiti",
+    title: "MEDISHRX 2.0",
+    authors: "Tneh Kor Nin, Leong Wei Luen, Hanafiah Husain, Shahmanazrey Che Dan, Yeap Li San, Calrin Lee Pei Chin, Muhamad Faiz Zakaria",
+    state: "Pulau Pinang",
+    affiliation: "Cawangan Penguatkuasaan Farmasi, Jabatan Kesihatan Negeri Pulau Pinang",
+    objective: "Menambah baik mesin pelupusan bahan psikotropik MediShRx dari versi 1.0 ke 2.0 bagi meningkatkan kecekapan, keselamatan dan keberkesanan pelupusan.",
+    findings: [
+      "100% pelupusan bahan psikotropik berjaya (daripada 91.1% sebelumnya)",
+      "Masa pelupusan berkurang 71.88%",
+      "Keperluan tenaga kerja dikurangkan sehingga 90%",
+      "Tiada kecederaan (berbanding 6 insiden sebelumnya)",
+      "Penjimatan kos RM521,400 setahun di peringkat nasional"
+    ],
+    conclusion: "MediShRx 2.0 berpotensi diperluaskan sebagai standard pelupusan nasional di semua kemudahan kesihatan dan industri farmaseutikal Malaysia."
+  }
+
 });
 
 /* ---- Register this deck into the shared hub registry ---- */
@@ -215,6 +267,9 @@ window.RISE_DECKS["introduction"] = {
     { key: "fields",                          render: () => window.RISE.components.fields(window.RISE.fields) },
     { key: "nihApproval",                     render: () => window.RISE.components.nihApproval(window.RISE.nihApproval) },
     { key: "nihPublication",                  render: () => window.RISE.components.nihApproval(window.RISE.nihPublication) },
-    { key: "publications",                    render: () => window.RISE.components.publications(window.RISE.publications) }
+    { key: "publications",                    render: () => window.RISE.components.publications(window.RISE.publications) },
+    { key: "kpkVisit",   render: () => window.RISE.components.kpkVisit(window.RISE.kpkVisit) },
+    { key: "kpkR01",     render: () => window.RISE.components.kpkProject(window.RISE.kpkR01) },
+    { key: "kpkQ01",     render: () => window.RISE.components.kpkProject(window.RISE.kpkQ01) }
   ]
 };

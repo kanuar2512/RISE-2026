@@ -778,6 +778,80 @@
       reveal(10, el("div", "insight-card", el("span", "ins-ic", picon("flag")) + el("p", "", d.insight)));
   };
 
+
+  /* ============================================================
+     KPK VISIT SLIDES
+     ============================================================ */
+
+  /* ---- kpkVisit: intro slide with 2 project preview cards ---- */
+  C.kpkVisit = function (d) {
+    const cards = (d.projects || []).map((p, i) =>
+      reveal(3 + i,
+        el("article", "card kpk-preview",
+          el("div", "kpk-pre-top",
+            el("span", "kpk-code", p.code) +
+            el("span", "kpk-cat-label", p.category)
+          ) +
+          el("div", "kpk-state-tag", "\uD83D\uDCCD " + p.state) +
+          el("div", "kpk-pre-title", p.title)
+        )
+      )
+    ).join("");
+
+    return sectionHead(d.eyebrow, d.title) +
+      reveal(2, el("p", "slide-sub", d.subtitle)) +
+      (d.context ? reveal(2, el("div", "kpk-context", d.context)) : "") +
+      el("div", "kpk-preview-grid", cards);
+  };
+
+  /* ---- kpkProject: full project detail slide (R01 / Q01) ---- */
+  C.kpkProject = function (d) {
+    const findings = (d.findings || []).map((f, i) =>
+      reveal(5 + i,
+        el("div", "kpk-finding",
+          el("span", "kpk-find-dot", "") +
+          el("span", "kpk-find-text", f)
+        )
+      )
+    ).join("");
+
+    return sectionHead(d.eyebrow, d.title) +
+      el("div", "kpk-layout",
+        el("div", "kpk-left",
+          reveal(2,
+            el("div", "kpk-header",
+              el("span", "kpk-badge", d.code) +
+              el("span", "kpk-cat-pill", d.category)
+            )
+          ) +
+          reveal(3, el("h3", "kpk-title", d.title)) +
+          reveal(4,
+            el("div", "kpk-meta",
+              el("div", "kpk-state", "\uD83D\uDCCD " + d.state) +
+              el("div", "kpk-affil", d.affiliation) +
+              el("div", "kpk-authors", d.authors)
+            )
+          ) +
+          reveal(5,
+            el("div", "kpk-obj-box",
+              el("div", "kpk-box-label", "Objektif") +
+              el("p", "kpk-obj-text", d.objective)
+            )
+          )
+        ) +
+        el("div", "kpk-right",
+          el("div", "kpk-box-label", "Dapatan Utama") +
+          el("div", "kpk-findings", findings) +
+          reveal(5 + (d.findings || []).length,
+            el("div", "kpk-conc-box",
+              el("div", "kpk-box-label", "Kesimpulan") +
+              el("p", "kpk-conc-text", d.conclusion)
+            )
+          )
+        )
+      );
+  };
+
   /* expose */
   RISE.components = C;
 })(window.RISE = window.RISE || {});
