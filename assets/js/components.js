@@ -876,6 +876,45 @@
       el("div", "juri-grid", cards);
   };
 
+
+  /* ============================================================
+     JURI WORKFLOW — Proses penilaian 5 langkah dengan maklumat tarikh,
+     URL, badge dan highlight untuk slide Taklimat Juri.
+     ============================================================ */
+  C.juriWorkflow = function (d) {
+    const steps = d.steps || [];
+
+    function badgeHtml(s) {
+      if (!s.badge) { return ""; }
+      const cls = s.highlight  ? "jwf-badge jwf-badge--deadline"
+                : s.badge === "Pilihan" ? "jwf-badge jwf-badge--opt"
+                : "jwf-badge";
+      return `<span class="${cls}">${s.badge}</span>`;
+    }
+
+    const cards = steps.map((s, i) =>
+      reveal(2 + i,
+        `<article class="jwf-card${s.highlight ? " jwf-card--deadline" : ""}">` +
+          `<div class="jwf-top">` +
+            `<span class="jwf-no">${String(i + 1).padStart(2, "0")}</span>` +
+            (s.date ? `<span class="jwf-date">\u{1F4C5} ${s.date}</span>` : "") +
+            badgeHtml(s) +
+          `</div>` +
+          `<div class="jwf-label">${s.label}</div>` +
+          (s.url ? `<a class="jwf-url" href="${s.url}" target="_blank">${s.url.replace(/^https?:\/\//, "")}</a>` : "") +
+          ((s.sub && s.sub.length) ? `<ul class="jwf-sub">${s.sub.map(b => `<li class="jwf-sub-item">${b}</li>`).join("")}</ul>` : "") +
+        `</article>`
+      )
+    );
+
+    const flow = cards.reduce((acc, c, i) =>
+      acc + c + (i < steps.length - 1 ? `<div class="jwf-arrow" aria-hidden="true">&rarr;</div>` : ""), ""
+    );
+
+    return sectionHead(d.eyebrow || "", d.title) +
+      `<div class="jwf-flow">${flow}</div>`;
+  };
+
   /* expose */
   RISE.components = C;
 })(window.RISE = window.RISE || {});

@@ -16,16 +16,48 @@ Object.assign(window.RISE_JURI, {
     subtitle: "Panduan Penilaian Poster R&D · RISE 2026"
   },
 
-  /* ---- Slide 2: proses penilaian dari perspektif juri ---- */
+  /* ---- Slide 2: proses penilaian dari perspektif juri (5 langkah kaya) ---- */
   workflow: {
+    eyebrow: "Panduan Juri",
     title: "Proses Penilaian Poster R&D",
     steps: [
-      { label: "Terima Borang Penilaian" },
-      { label: "Lawati Ruang Poster" },
-      { label: "Nilai Mengikut Rubrik" },
-      { label: "Markah Individu" },
-      { label: "Serahkan Borang" },
-      { label: "Purata Dikira" }
+      {
+        label: "Terima Borang Penjurian Dalam Talian",
+        date: "22 Julai 2026",
+        badge: "Wajib",
+        url: "https://go.gov.my/PENJURIAN-RISE2026",
+        sub: ["Borang penilaian dihantar secara dalam talian"]
+      },
+      {
+        label: "Nilai Poster Secara Individu",
+        date: "23 – 28 Julai 2026",
+        sub: [
+          "① Poster dalam talian (self-explanatory)",
+          "② Bersemuka — semasa lawatan tapak simposium"
+        ]
+      },
+      {
+        label: "Pemarkahan Mengikut Rubrik",
+        sub: [
+          "Gunakan rubrik penilaian yang ditetapkan",
+          "Markah purata kesemua juri digabungkan"
+        ]
+      },
+      {
+        label: "Perbincangan Juri",
+        badge: "Pilihan",
+        sub: [
+          "Pilih pemenang 1–3 secara muafakat",
+          "Atau terus gunakan markah purata"
+        ]
+      },
+      {
+        label: "Muktamadkan Keputusan",
+        date: "28 Julai 2026, 6.00 ptg",
+        badge: "Tarikh Akhir",
+        highlight: true,
+        sub: ["Keputusan mesti dimuktamadkan sebelum waktu ini"]
+      }
     ]
   },
 
@@ -70,7 +102,7 @@ window.RISE_DECKS["taklimat-juri"] = {
     /* Slide 1 — Cover juri (diubah suai) */
     { key: "juri-cover",    cls: "hero",       render: () => window.RISE.components.divider(window.RISE_JURI.cover) },
     /* Slide 2 — Workflow dari perspektif juri (diubah suai) */
-    { key: "juri-workflow",                    render: () => window.RISE.components.workflow(window.RISE_JURI.workflow) },
+    { key: "juri-workflow",                    render: () => window.RISE.components.juriWorkflow(window.RISE_JURI.workflow) },
     /* Slide 3 — Senarai Juri (baharu) */
     { key: "juri-panel",                       render: () => window.RISE.components.juriPanel(window.RISE_JURI.juriList) },
     /* Slide 4–9 — Sama seperti penjurian-rnd */
