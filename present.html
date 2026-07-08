@@ -28,7 +28,7 @@
   </div>
   <div class="hint">&#8592; &#8594; / ruang &middot; F skrin penuh</div>
 
-  <!-- Password overlay (hidden by default; shown for locked decks) -->
+  <!-- Password overlay (shown for locked decks) -->
   <div class="pw-overlay" id="pwOverlay">
     <div class="pw-box">
       <div class="pw-icon">&#128274;</div>
@@ -43,47 +43,67 @@
     </div>
   </div>
 
-  <!-- shared assets -->
+  <!-- Shared assets & deck registry -->
   <script src="assets/data/logos.js"></script>
   <script src="assets/data/geo-malaysia.js"></script>
-  <!-- deck registry: each file registers itself into window.RISE_DECKS -->
   <script src="assets/data/content.js"></script>
   <script src="decks/penjurian-content.js"></script>
   <script src="decks/taklimat-juri-content.js"></script>
   <script src="decks/layout-content.js"></script>
   <script src="decks/research-content.js"></script>
   <script src="decks/digital-content.js"></script>
-  <!-- shared components + engine (engine picks deck from ?deck=) -->
   <script src="assets/js/components.js"></script>
 
-  <!-- Password gate: runs BEFORE engine.js -->
+  <!--
+    ENGINE IS NOT LOADED HERE.
+    The gate script below loads engine.js dynamically — only after
+    the password is accepted (or if the deck has no lock at all).
+  -->
   <script>
   (function () {
+    /* Dynamically inject engine.js — called only when access is granted */
+    function loadEngine() {
+      var s = document.createElement("script");
+      s.src = "assets/js/engine.js";
+      document.body.appendChild(s);
+    }
+
     var wanted = new URLSearchParams(location.search).get("deck");
-    var reg = window.RISE_DECKS || {};
-    var deck = wanted && reg[wanted] ? reg[wanted] : null;
-    if (!deck || !deck.locked) { return; } /* no lock — engine loads normally */
+    var reg    = window.RISE_DECKS || {};
+    var deck   = (wanted && reg[wanted]) ? reg[wanted] : null;
 
+    /* No lock on this deck — load engine immediately */
+    if (!deck || !deck.locked) {
+      loadEngine();
+      return;
+    }
+
+    /* Already unlocked this browser session — load engine immediately */
     var SESSION_KEY = "rise_unlocked_" + wanted;
-    if (sessionStorage.getItem(SESSION_KEY) === "1") { return; } /* already unlocked this session */
+    if (sessionStorage.getItem(SESSION_KEY) === "1") {
+      loadEngine();
+      return;
+    }
 
-    /* Show overlay, block engine */
+    /* ---- Deck is locked: show overlay, wait for correct password ---- */
     var overlay = document.getElementById("pwOverlay");
     overlay.classList.add("pw-active");
 
+    /* Auto-focus input */
+    setTimeout(function () { document.getElementById("pwInput").focus(); }, 100);
+
     function attempt() {
-      var val = document.getElementById("pwInput").value;
-      var err = document.getElementById("pwErr");
-      if (btoa(val) === deck.locked) {
+      var entered = document.getElementById("pwInput").value;
+      var errEl   = document.getElementById("pwErr");
+      if (btoa(entered) === deck.locked) {
+        /* Correct — unlock, hide overlay, load engine */
         sessionStorage.setItem(SESSION_KEY, "1");
         overlay.classList.remove("pw-active");
-        err.classList.remove("pw-err--show");
-        /* dynamically load engine now that gate is passed */
-        var s = document.createElement("script");
-        s.src = "assets/js/engine.js";
-        document.body.appendChild(s);
+        errEl.classList.remove("pw-err--show");
+        loadEngine();
       } else {
-        err.classList.add("pw-err--show");
+        /* Wrong password */
+        errEl.classList.add("pw-err--show");
         document.getElementById("pwInput").value = "";
         document.getElementById("pwInput").focus();
       }
@@ -93,18 +113,7 @@
     document.getElementById("pwInput").addEventListener("keydown", function (e) {
       if (e.key === "Enter") { attempt(); }
     });
-
-    /* Engine must NOT auto-load for locked decks — stop here */
-    document.currentScript && document.currentScript.closest("script");
-    window._RISE_LOCKED = true;
   })();
-  </script>
-
-  <script>
-  /* Only load engine if deck is not locked (or already unlocked above) */
-  if (!window._RISE_LOCKED) {
-    document.write('<scr' + 'ipt src="assets/js/engine.js"></scr' + 'ipt>');
-  }
   </script>
 </body>
 </html>
