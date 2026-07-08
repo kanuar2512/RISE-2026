@@ -1046,3 +1046,12 @@ body.hub { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; b
     grid-template-columns: 1fr;
   }
 }
+
+/* Hub title centred variant */
+.hub-h1--center {
+  text-align: center;
+}
+.hub-h1--center + .gold-rule {
+  margin-left: auto;
+  margin-right: auto;
+}
