@@ -62,6 +62,7 @@ Object.assign(window.RISE_JURI, {
 window.RISE_DECKS = window.RISE_DECKS || {};
 window.RISE_DECKS["taklimat-juri"] = {
   id: "taklimat-juri",
+  locked: "UklTRUAyMDI2",   /* btoa("RISE@2026") — tukar nilai ini untuk ubah kata laluan */
   title: "Taklimat Juri Poster R&D",
   subtitle: "Panduan penilaian dan rubrik untuk panel penilai RISE 2026",
   meta: { event: "RISE 2026" },

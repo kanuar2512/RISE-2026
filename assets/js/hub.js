@@ -17,11 +17,13 @@
     card.className = "hub-card";
     card.href = d.externalUrl || ("present.html?deck=" + encodeURIComponent(d.id));
     const countLabel = d.externalUrl ? "Panduan Interaktif" : (count + " slaid");
+    const lockBadge = d.locked ? '<span class="hub-lock">&#128274; Dikunci</span>' : "";
     card.innerHTML =
       '<span class="hub-eyebrow">' + ((d.meta && d.meta.event) || "RISE 2026") + "</span>" +
       '<h2 class="hub-title">' + (d.title || d.id) + "</h2>" +
       '<p class="hub-sub">' + (d.subtitle || "") + "</p>" +
       '<div class="hub-foot"><span class="hub-count">' + countLabel + "</span>" +
+      lockBadge +
       '<span class="hub-go">Buka &rarr;</span></div>';
     return card;
   }

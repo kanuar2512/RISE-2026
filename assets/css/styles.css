@@ -1055,3 +1055,116 @@ body.hub { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; b
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ============================================================
+   SECTION 21 — PASSWORD LOCK OVERLAY
+   ============================================================ */
+.pw-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #3d0000 0%, #800000 60%, #a52a2a 100%);
+  align-items: center;
+  justify-content: center;
+}
+.pw-overlay.pw-active {
+  display: flex;
+}
+.pw-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 48px 52px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.pw-icon {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.pw-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--maroon-dark, #3d0000);
+  margin: 0;
+}
+.pw-desc {
+  font-size: 14px;
+  color: #6b5f4d;
+  margin: 0;
+  line-height: 1.55;
+}
+.pw-field {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+}
+.pw-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e8dcc8;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.pw-input:focus {
+  border-color: #800000;
+}
+.pw-btn {
+  padding: 12px 20px;
+  background: #800000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.pw-btn:hover {
+  background: #a52a2a;
+}
+.pw-err {
+  font-size: 13px;
+  color: #c0392b;
+  font-weight: 600;
+  display: none;
+  margin: 0;
+}
+.pw-err--show {
+  display: block;
+}
+.pw-back {
+  font-size: 13px;
+  color: #9b8c7a;
+  text-decoration: none;
+  margin-top: 4px;
+  transition: color 0.2s;
+}
+.pw-back:hover {
+  color: #800000;
+}
+
+/* Hub lock badge */
+.hub-lock {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #800000;
+  background: rgba(128,0,0,0.08);
+  border: 1px solid rgba(128,0,0,0.2);
+  border-radius: 20px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
