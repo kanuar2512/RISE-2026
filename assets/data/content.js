@@ -247,6 +247,14 @@ Object.assign(window.RISE, {
       "Penjimatan kos RM521,400 setahun di peringkat nasional"
     ],
     conclusion: "MediShRx 2.0 berpotensi diperluaskan sebagai standard pelupusan nasional di semua kemudahan kesihatan dan industri farmaseutikal Malaysia."
+  },
+
+
+  /* ---- SLIDE 13: Gantt Chart Proses Kerja ---- */
+  ganttChart: {
+    eyebrow: "Proses Kerja",
+    title: "Carta Gantt Proses Kerja yang Terlibat",
+    image: "assets/img/gantt-proses-kerja.png"
   }
 
 });
@@ -270,6 +278,7 @@ window.RISE_DECKS["introduction"] = {
     { key: "publications",                    render: () => window.RISE.components.publications(window.RISE.publications) },
     { key: "kpkVisit",   render: () => window.RISE.components.kpkVisit(window.RISE.kpkVisit) },
     { key: "kpkR01",     render: () => window.RISE.components.kpkProject(window.RISE.kpkR01) },
-    { key: "kpkQ01",     render: () => window.RISE.components.kpkProject(window.RISE.kpkQ01) }
+    { key: "kpkQ01",     render: () => window.RISE.components.kpkProject(window.RISE.kpkQ01) },
+    { key: "ganttChart",  cls: "slide--top", render: () => window.RISE.components.imageSolo(window.RISE.ganttChart) }
   ]
 };
